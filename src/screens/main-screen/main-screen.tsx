@@ -3,7 +3,7 @@ import { Footer } from '../../components/footer/footer';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
 
-export type PromoInfo = {
+export type PromoInfoProps = {
   title: string;
   genre: string;
   year: number;
@@ -11,7 +11,7 @@ export type PromoInfo = {
   posterImagePath: string;
 }
 
-export function MainScreen({ title, genre, year, imapePath, posterImagePath }: PromoInfo): JSX.Element {
+export function MainScreen({ title, genre, year, imapePath, posterImagePath }: PromoInfoProps): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -23,13 +23,13 @@ export function MainScreen({ title, genre, year, imapePath, posterImagePath }: P
 
         <header className="page-header film-card__head">
           <Logo />
-          <UserBlock/>
+          <UserBlock />
         </header>
 
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={posterImagePath} alt={title} width="218" height="327" />
+              <img src={posterImagePath} alt={`${title} poster`} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">

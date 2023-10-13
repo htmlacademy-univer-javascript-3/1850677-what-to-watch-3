@@ -1,8 +1,8 @@
-type NumberRatingType = {
+type NumberRatingProps = {
   starCount: number;
 }
 
-export function Rating({ starCount }: NumberRatingType) {
+export function Rating({ starCount }: NumberRatingProps) {
   return (
     <>
       <input

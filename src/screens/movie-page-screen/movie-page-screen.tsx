@@ -2,16 +2,17 @@ import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
+import { PromoInfoProps } from '../main-screen/main-screen';
 
-export function MoviePageScreen() {
+export function MoviePageScreen({ title, genre, year, imapePath, posterImagePath }: PromoInfoProps) {
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
-              src="img/bg-the-grand-budapest-hotel.jpg"
-              alt="The Grand Budapest Hotel"
+              src={imapePath}
+              alt={title}
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
@@ -21,10 +22,10 @@ export function MoviePageScreen() {
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__year">{year}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
@@ -51,8 +52,8 @@ export function MoviePageScreen() {
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={posterImagePath}
+                alt={`${title} poster`}
                 width={218}
                 height={327}
               />
@@ -132,7 +133,7 @@ export function MoviePageScreen() {
             />
           </div>
         </section>
-        <Footer/>
+        <Footer />
       </div>
     </>
 
