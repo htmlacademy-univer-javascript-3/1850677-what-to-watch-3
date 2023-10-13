@@ -1,9 +1,10 @@
-import MainScreen from '../../pages/main-screen/main-screen';
+import { MainScreen } from '../../screens/main-screen/main-screen';
+import type { PromoInfo } from '../../screens/main-screen/main-screen';
 
-function App() {
+export function App(props: PromoInfo) {
   return (
-    <MainScreen title='The Grand Budapest Hotel' genre='Drama' year={2014} />
+    <MainScreen
+      {...props}
+    />
   );
 }
-
-export default App;
