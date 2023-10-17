@@ -1,4 +1,4 @@
-function Player() {
+export function PlayerScreen() {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
@@ -34,5 +34,3 @@ function Player() {
     </div>
   );
 }
-
-export default Player;
