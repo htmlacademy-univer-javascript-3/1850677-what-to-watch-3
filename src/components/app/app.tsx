@@ -1,17 +1,17 @@
-import { MainScreen } from '../../screens/main-screen/main-screen';
-import type { PromoInfoProps } from '../../screens/main-screen/main-screen';
+import { MainScreen, MainScreenProps } from '../../screens/main-screen/main-screen';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { ErrorScreen } from '../../screens/error-screen/error-screen';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { SignInScreen } from '../../screens/sign-in-screen/sign-in-screen';
 import { MyListScreen } from '../../screens/my-list-screen/my-list-screen';
-import { MoviePageScreen } from '../../screens/movie-page-screen/movie-page-screen';
-import { MoviePageReviewScreen } from '../../screens/movie-page-screen/movie-page-review-screen';
+import { MovieScreen } from '../../screens/movie-page-screen/movie-screen';
 import { PlayerScreen } from '../../screens/player-screen/player-screen';
 import { PrivateRoute } from '../private-route/private-route';
+import { AddReviewScreen } from '../../screens/add-review-screen/add-review-screen';
 
+type AppProps = MainScreenProps;
 
-export function App(props: PromoInfoProps) {
+export function App(props: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
@@ -31,24 +31,24 @@ export function App(props: PromoInfoProps) {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <MyListScreen />
+              <MyListScreen film={props.promoFilm} films={props.films}/>
             </PrivateRoute>
           }
         />
 
         <Route
           path={AppRoute.Film}
-          element={<MoviePageScreen {...props} />}
+          element={<MovieScreen films={props.films} />}
         />
 
         <Route
           path={AppRoute.AddReview}
-          element={<MoviePageReviewScreen {...props} />}
+          element={<AddReviewScreen films={props.films} />}
         />
 
         <Route
           path={AppRoute.Player}
-          element={<PlayerScreen />}
+          element={<PlayerScreen videoUrl={props.promoFilm.videoUrl}/>}
         />
 
         <Route

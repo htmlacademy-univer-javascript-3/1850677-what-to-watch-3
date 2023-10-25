@@ -1,18 +1,31 @@
-import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
-import { PromoInfoProps } from '../main-screen/main-screen';
+import { Film } from '../../types/film';
+import { FilmList } from '../../components/film-list/film-list';
+import { Link, useParams } from 'react-router-dom';
+import { ErrorScreen } from '../error-screen/error-screen';
 
-export function MoviePageScreen({ title, genre, year, imapePath, posterImagePath }: PromoInfoProps) {
+export type MovieProps = {
+  films: Film[];
+}
+
+export function MovieScreen({ films }: MovieProps) {
+  const { id } = useParams();
+  const currentFilm = films.at(Number(id));
+
+  if (!currentFilm) {
+    return <ErrorScreen />;
+  }
+
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
-              src={imapePath}
-              alt={title}
+              src={currentFilm.imagePath}
+              alt={currentFilm.title}
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
@@ -22,10 +35,10 @@ export function MoviePageScreen({ title, genre, year, imapePath, posterImagePath
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{currentFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{year}</span>
+                <span className="film-card__genre">{currentFilm.genre}</span>
+                <span className="film-card__year">{currentFilm.releaseYear}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
@@ -41,9 +54,7 @@ export function MoviePageScreen({ title, genre, year, imapePath, posterImagePath
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">
-                  Add review
-                </a>
+                <Link to={`/films/:${currentFilm.id}/review`} className="btn film-card__button"> Add review</Link>
               </div>
             </div>
           </div>
@@ -52,8 +63,8 @@ export function MoviePageScreen({ title, genre, year, imapePath, posterImagePath
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img
-                src={posterImagePath}
-                alt={`${title} poster`}
+                src={currentFilm.posterImagePath}
+                alt={`${currentFilm.title} poster`}
                 width={218}
                 height={327}
               />
@@ -79,32 +90,20 @@ export function MoviePageScreen({ title, genre, year, imapePath, posterImagePath
                 </ul>
               </nav>
               <div className="film-rating">
-                <div className="film-rating__score">8,9</div>
+                <div className="film-rating__score">{currentFilm.rating}</div>
                 <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
+                  <span className="film-rating__level">{currentFilm.ratingLevel}</span>
+                  <span className="film-rating__count">{currentFilm.ratingCount} ratings</span>
                 </p>
               </div>
               <div className="film-card__text">
-                <p>
-                  In the 1930s, the Grand Budapest Hotel is a popular European ski
-                  resort, presided over by concierge Gustave H. (Ralph Fiennes).
-                  Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.
-                </p>
-                <p>
-                  Gustave prides himself on providing first-class service to the
-                  hotel&apos;s guests, including satisfying the sexual needs of the many
-                  elderly women who stay there. When one of Gustave&apos;s lovers dies
-                  mysteriously, Gustave finds himself the recipient of a priceless
-                  painting and the chief suspect in her murder.
-                </p>
+                {currentFilm.description}
                 <p className="film-card__director">
-                  <strong>Director: Wes Anderson</strong>
+                  <strong>Director: {currentFilm.director}</strong>
                 </p>
                 <p className="film-card__starring">
                   <strong>
-                    Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and
-                    other
+                    Starring: {currentFilm.starring}
                   </strong>
                 </p>
               </div>
@@ -115,23 +114,7 @@ export function MoviePageScreen({ title, genre, year, imapePath, posterImagePath
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <div className="catalog__films-list">
-            <FilmCard imagePath='img/fantastic-beasts-the-crimes-of-grindelwald.jpg'
-              title='Fantastic Beasts: The Crimes of Grindelwald'
-            />
-
-            <FilmCard imagePath='img/bohemian-rhapsody.jpg'
-              title='Bohemian Rhapsody'
-            />
-
-            <FilmCard imagePath="img/macbeth.jpg"
-              title="Macbeth"
-            />
-
-            <FilmCard imagePath="img/aviator.jpg"
-              title="Aviator"
-            />
-          </div>
+          <FilmList filmId={currentFilm.id} films={films} />
         </section>
         <Footer />
       </div>
