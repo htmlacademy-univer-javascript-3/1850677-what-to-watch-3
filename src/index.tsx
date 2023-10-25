@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './components/app/app';
+import { films } from './mocks/films';
+import { PromoFilm } from './mocks/films';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,11 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      title='The Grand Budapest Hotel'
-      genre='Drama'
-      year={2014}
-      imapePath='img/bg-the-grand-budapest-hotel.jpg'
-      posterImagePath='img/the-grand-budapest-hotel-poster.jpg'
+      promoFilm = {PromoFilm} films = {films}
     />
   </React.StrictMode>
 );

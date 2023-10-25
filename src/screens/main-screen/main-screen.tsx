@@ -1,22 +1,20 @@
-import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
+import { Film } from '../../types/film';
+import { FilmList } from '../../components/film-list/film-list';
 
-export type PromoInfoProps = {
-  title: string;
-  genre: string;
-  year: number;
-  imapePath: string;
-  posterImagePath: string;
+export type MainScreenProps = {
+  promoFilm: Film;
+  films: Film[];
 }
 
-export function MainScreen({ title, genre, year, imapePath, posterImagePath }: PromoInfoProps): JSX.Element {
+export function MainScreen({ promoFilm, films }: MainScreenProps): JSX.Element {
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={imapePath} alt={title} />
+          <img src={promoFilm.imagePath} alt={promoFilm.title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -29,14 +27,14 @@ export function MainScreen({ title, genre, year, imapePath, posterImagePath }: P
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={posterImagePath} alt={`${title} poster`} width="218" height="327" />
+              <img src={promoFilm.posterImagePath} alt={`${promoFilm.title} poster`} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{promoFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{year}</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -96,87 +94,7 @@ export function MainScreen({ title, genre, year, imapePath, posterImagePath }: P
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            <FilmCard imagePath="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              title="Fantastic Beasts: The Crimes of Grindelwald"
-            />
-
-            <FilmCard imagePath="img/bohemian-rhapsody.jpg"
-              title="Bohemian Rhapsody"
-            />
-
-            <FilmCard imagePath="img/macbeth.jpg"
-              title="Macbeth"
-            />
-
-            <FilmCard imagePath="img/aviator.jpg"
-              title="Aviator"
-            />
-
-            <FilmCard imagePath="img/we-need-to-talk-about-kevin.jpg"
-              title="We need to talk about Kevin"
-            />
-
-            <FilmCard imagePath="img/what-we-do-in-the-shadows.jpg"
-              title="What We Do in the Shadows"
-            />
-
-            <FilmCard imagePath="img/revenant.jpg"
-              title="Revenant"
-            />
-
-            <FilmCard imagePath="img/johnny-english.jpg"
-              title="Johnny English"
-            />
-
-            <FilmCard imagePath="img/shutter-island.jpg"
-              title="Shutter Island"
-            />
-
-            <FilmCard imagePath="img/pulp-fiction.jpg"
-              title="Pulp Fiction"
-            />
-
-            <FilmCard imagePath="img/no-country-for-old-men.jpg"
-              title="No Country for Old Men"
-            />
-
-            <FilmCard imagePath="img/snatch.jpg"
-              title="Snatch"
-            />
-
-            <FilmCard imagePath="img/moonrise-kingdom.jpg"
-              title="Moonrise Kingdom"
-            />
-
-            <FilmCard imagePath="img/seven-years-in-tibet.jpg"
-              title="Seven Years in Tibet"
-            />
-
-            <FilmCard imagePath="img/midnight-special.jpg"
-              title="Midnight Special"
-            />
-
-            <FilmCard imagePath="img/war-of-the-worlds.jpg"
-              title="War of the Worlds"
-            />
-
-            <FilmCard imagePath="img/dardjeeling-limited.jpg"
-              title="Dardjeeling Limited"
-            />
-
-            <FilmCard imagePath="img/orlando.jpg"
-              title="Orlando"
-            />
-
-            <FilmCard imagePath="img/mindhunter.jpg"
-              title="Mindhunter"
-            />
-
-            <FilmCard imagePath="img/midnight-special.jpg"
-              title="Midnight Special"
-            />
-          </div>
+          <FilmList filmId={promoFilm.id} films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

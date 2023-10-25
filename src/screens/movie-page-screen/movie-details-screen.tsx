@@ -1,17 +1,29 @@
-import { FilmCard } from '../../components/film-card/film-card';
+import { useParams } from 'react-router-dom';
+import { FilmList } from '../../components/film-list/film-list';
 import { Footer } from '../../components/footer/footer';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
+import { ErrorScreen } from '../error-screen/error-screen';
+import { MovieProps } from './movie-screen';
 
-export function MoviePageDetailsScreen() {
+type MoviePageDetailsProps = MovieProps;
+
+export function MoviePageDetailsScreen({ films }: MoviePageDetailsProps) {
+  const { id } = useParams();
+  const film = films.at(Number(id));
+
+  if (!film) {
+    return <ErrorScreen />;
+  }
+
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
-              src="img/bg-the-grand-budapest-hotel.jpg"
-              alt="The Grand Budapest Hotel"
+              src={film.imagePath}
+              alt={film.title}
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
@@ -21,10 +33,10 @@ export function MoviePageDetailsScreen() {
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{film.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{film.genre}</span>
+                <span className="film-card__year">{film.releaseYear}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
@@ -51,8 +63,8 @@ export function MoviePageDetailsScreen() {
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={film.posterImagePath}
+                alt={`${film.title} poster`}
                 width={218}
                 height={327}
               />
@@ -81,7 +93,7 @@ export function MoviePageDetailsScreen() {
                 <div className="film-card__text-col">
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Director</strong>
-                    <span className="film-card__details-value">Wes Anderson</span>
+                    <span className="film-card__details-value">{film.director}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Starring</strong>
@@ -104,15 +116,15 @@ export function MoviePageDetailsScreen() {
                 <div className="film-card__text-col">
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Run Time</strong>
-                    <span className="film-card__details-value">1h 39m</span>
+                    <span className="film-card__details-value">{film.duration}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Genre</strong>
-                    <span className="film-card__details-value">Comedy</span>
+                    <span className="film-card__details-value">{film.genre}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Released</strong>
-                    <span className="film-card__details-value">2014</span>
+                    <span className="film-card__details-value">{film.releaseYear}</span>
                   </p>
                 </div>
               </div>
@@ -123,23 +135,7 @@ export function MoviePageDetailsScreen() {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <div className="catalog__films-list">
-            <FilmCard imagePath='img/fantastic-beasts-the-crimes-of-grindelwald.jpg'
-              title='Fantastic Beasts: The Crimes of Grindelwald'
-            />
-
-            <FilmCard imagePath='img/bohemian-rhapsody.jpg'
-              title='Bohemian Rhapsody'
-            />
-
-            <FilmCard imagePath="img/macbeth.jpg"
-              title="Macbeth"
-            />
-
-            <FilmCard imagePath="img/aviator.jpg"
-              title="Aviator"
-            />
-          </div>
+          <FilmList filmId={film.id} films={films} />
         </section>
         <Footer />
       </div>

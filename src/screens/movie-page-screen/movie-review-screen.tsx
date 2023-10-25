@@ -1,19 +1,30 @@
-import { FilmCard } from '../../components/film-card/film-card';
+import { useParams } from 'react-router-dom';
 import { FilmCardReview } from '../../components/film-card/film-card-review';
+import { FilmList } from '../../components/film-list/film-list';
 import { Footer } from '../../components/footer/footer';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
-import { PromoInfoProps } from '../main-screen/main-screen';
+import { MovieProps } from './movie-screen';
+import { ErrorScreen } from '../error-screen/error-screen';
 
-export function MoviePageReviewScreen({ title, genre, year, imapePath, posterImagePath }: PromoInfoProps) {
+type MoviePageReviewProps = MovieProps;
+
+export function MoviePageReviewScreen({ films }: MoviePageReviewProps) {
+  const { id } = useParams();
+  const film = films.at(Number(id));
+
+  if (!film) {
+    return <ErrorScreen />;
+  }
+
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
-              src={imapePath}
-              alt={title}
+              src={film.imagePath}
+              alt={film.title}
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
@@ -23,10 +34,10 @@ export function MoviePageReviewScreen({ title, genre, year, imapePath, posterIma
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{film.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{year}</span>
+                <span className="film-card__genre">{film.genre}</span>
+                <span className="film-card__year">{film.releaseYear}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
@@ -53,8 +64,8 @@ export function MoviePageReviewScreen({ title, genre, year, imapePath, posterIma
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img
-                src={posterImagePath}
-                alt={`${title} poster`}
+                src={film.posterImagePath}
+                alt={`${film.title} poster`}
                 width={218}
                 height={327}
               />
@@ -151,23 +162,7 @@ export function MoviePageReviewScreen({ title, genre, year, imapePath, posterIma
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <div className="catalog__films-list">
-            <FilmCard imagePath='img/fantastic-beasts-the-crimes-of-grindelwald.jpg'
-              title='Fantastic Beasts: The Crimes of Grindelwald'
-            />
-
-            <FilmCard imagePath='img/bohemian-rhapsody.jpg'
-              title='Bohemian Rhapsody'
-            />
-
-            <FilmCard imagePath="img/macbeth.jpg"
-              title="Macbeth"
-            />
-
-            <FilmCard imagePath="img/aviator.jpg"
-              title="Aviator"
-            />
-          </div>
+          <FilmList filmId={film.id} films={films} />
         </section>
         <Footer />
       </div>
