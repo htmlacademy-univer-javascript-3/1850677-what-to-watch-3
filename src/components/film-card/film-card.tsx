@@ -1,21 +1,21 @@
+import { useEffect, useState } from 'react';
 import { Film } from '../../types/film';
 import { Link } from 'react-router-dom';
+import { VideoPlayer } from '../video-player/video-player';
 
 type FilmCardProps = {
   film: Film;
-  onFilmCard: (id: number) => void;
 }
 
-export function FilmCard({ film, onFilmCard }: FilmCardProps): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onMouseEnterHandler = () => {
-    onFilmCard(film.id);
-  };
+export function FilmCard({ film }: FilmCardProps): JSX.Element {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isNeedToPlay, setIsNeedToPlay] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onMouseLeaveHandler = () => {
-    onFilmCard(0);
-  };
+  useEffect(() => {
+    if (isNeedToPlay) {
+      setTimeout(() => setIsPlaying(true), 1000);
+    }
+  }, [isNeedToPlay]);
 
   return (
     <article className="small-film-card catalog__films-card">
@@ -23,7 +23,17 @@ export function FilmCard({ film, onFilmCard }: FilmCardProps): JSX.Element {
         <img src={film.imagePath} alt={film.title} />
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`/films/${film.id}`}>{film.title}</Link>
+        <Link className="small-film-card__link"
+          onMouseEnter={() => setIsNeedToPlay(true)}
+          onMouseLeave={() => {
+            setIsNeedToPlay(false);
+            setIsPlaying(false);
+          }}
+          to={`/films/${film.id}`}
+        >
+          {isPlaying && <VideoPlayer isPlaying={isPlaying} isMuted src={film.videoUrl} poster={film.posterImagePath}></VideoPlayer>}
+          {!isPlaying && film.title}
+        </Link>
       </h3>
     </article>
   );

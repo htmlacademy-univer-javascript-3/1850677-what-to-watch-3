@@ -28,7 +28,7 @@ export const films: Film[] = [
     ],
     ratingCount: 302,
     duration: '1h 39m',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: 1,
@@ -44,7 +44,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: 2,
@@ -60,7 +60,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: 3,
@@ -76,7 +76,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 4,
@@ -92,7 +92,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 5,
@@ -108,7 +108,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 6,
@@ -124,7 +124,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 7,
@@ -140,7 +140,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 8,
@@ -156,7 +156,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 9,
@@ -172,7 +172,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 10,
@@ -188,7 +188,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 11,
@@ -204,7 +204,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 12,
@@ -220,7 +220,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 13,
@@ -236,7 +236,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 14,
@@ -252,7 +252,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 15,
@@ -268,7 +268,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 16,
@@ -284,7 +284,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '2h',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 17,
@@ -300,7 +300,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '2h',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 18,
@@ -316,7 +316,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '2h',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
   {
     id: 19,
@@ -332,7 +332,7 @@ export const films: Film[] = [
     director: '',
     starring: [],
     duration: '2h',
-    videoUrl: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    videoUrl: '',
   },
 ];
 
