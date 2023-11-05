@@ -94,7 +94,7 @@ export function MainScreen({ promoFilm, films }: MainScreenProps): JSX.Element {
             </li>
           </ul>
 
-          <FilmList filmId={promoFilm.id} films={films}/>
+          <FilmList filmId={promoFilm.id} films={films} genre={undefined}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
