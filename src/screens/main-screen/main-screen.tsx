@@ -5,6 +5,7 @@ import { Film } from '../../types/film';
 import { FilmList } from '../../components/film-list/film-list';
 import { GenreList } from '../../components/genre-list/genre-list';
 import {useAppSelector} from '../../components/hooks/hooks.ts';
+import {ShowMore} from '../../components/show-more/show-more.tsx';
 
 export type MainScreenProps = {
   promoFilm: Film;
@@ -68,9 +69,7 @@ export function MainScreen({ promoFilm }: MainScreenProps): JSX.Element {
 
           <FilmList films={filmsGenre.slice(0, filmCardCount)} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {filmsGenre.length > filmCardCount ? <ShowMore/> : ''}
         </section>
 
         <Footer />
