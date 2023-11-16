@@ -1,7 +1,10 @@
+import { store } from '../store';
+import { Genre } from '../const';
+
 export type Film = {
   id: number;
   title: string;
-  genre: string;
+  genre: Genre;
   releaseYear: number;
   imagePath: string;
   posterImagePath: string;
@@ -14,3 +17,7 @@ export type Film = {
   duration: string;
   videoUrl: string;
 }
+
+export type State = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

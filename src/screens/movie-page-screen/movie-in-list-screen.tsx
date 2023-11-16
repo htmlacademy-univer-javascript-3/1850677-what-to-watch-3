@@ -115,7 +115,7 @@ export function MoviePageInListScreen({ films }: MoviePageInListProps) {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            <FilmList filmId={film.id} films={films} />
+            <FilmList films={films} />
           </div>
         </section>
         <Footer />

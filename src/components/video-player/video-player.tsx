@@ -34,6 +34,7 @@ export function VideoPlayer({isPlaying, isMuted, src, poster}: VideoPlayerProps)
 
     if (isPlaying){
       playerElement.play();
+      return;
     }
 
     playerElement.pause();
@@ -43,6 +44,7 @@ export function VideoPlayer({isPlaying, isMuted, src, poster}: VideoPlayerProps)
     <video width="280"
       height="175"
       src={src}
+      ref={videoRef}
       poster={poster}
       muted={isMuted}
     >

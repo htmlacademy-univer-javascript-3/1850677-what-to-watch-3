@@ -6,6 +6,7 @@ import { FilmList } from '../../components/film-list/film-list';
 import { Link, useParams } from 'react-router-dom';
 import { ErrorScreen } from '../error-screen/error-screen';
 import { Tabs } from '../../components/tabs/tabs';
+import {useAppSelector} from '../../components/hooks/hooks.ts';
 
 export type MovieProps = {
   films: Film[];
@@ -15,6 +16,7 @@ export function MovieScreen({ films }: MovieProps) {
   window.scrollTo(0, 0);
   const { id } = useParams();
   const currentFilm = films.at(Number(id));
+  const filmsGenre = useAppSelector((state) => state.filmList);
 
   if (!currentFilm) {
     return <ErrorScreen />;
@@ -71,14 +73,14 @@ export function MovieScreen({ films }: MovieProps) {
                 height={327}
               />
             </div>
-            <Tabs films={films}></Tabs>
+            <Tabs films={filmsGenre}></Tabs>
           </div>
         </div>
       </section>
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList filmId={currentFilm.id} films={films} genre={currentFilm.genre}/>
+          <FilmList films={filmsGenre}/>
         </section>
         <Footer />
       </div>
