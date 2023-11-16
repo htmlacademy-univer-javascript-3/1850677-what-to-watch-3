@@ -5,11 +5,10 @@ import { UserBlock } from '../../components/user-block/user-block';
 import { Film } from '../../types/film';
 
 type MyListProps = {
-  film: Film;
   films: Film[];
 }
 
-export function MyListScreen({ film, films }: MyListProps) {
+export function MyListScreen({films }: MyListProps) {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -21,7 +20,7 @@ export function MyListScreen({ film, films }: MyListProps) {
       </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmList filmId={film.id} films={films} />
+        <FilmList films={films} />
       </section>
       <Footer />
     </div>

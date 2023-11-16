@@ -162,7 +162,7 @@ export function MoviePageReviewScreen({ films }: MoviePageReviewProps) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList filmId={film.id} films={films} />
+          <FilmList films={films} />
         </section>
         <Footer />
       </div>
