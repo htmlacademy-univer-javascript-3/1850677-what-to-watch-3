@@ -55,7 +55,7 @@ export function App(props: AppProps) {
 
           <Route
             path={AppRoute.AddReview}
-            element={<AddReviewScreen films={films}/>}
+            element={<AddReviewScreen/>}
           />
 
           <Route
