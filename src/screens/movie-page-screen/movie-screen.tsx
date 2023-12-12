@@ -1,12 +1,11 @@
 import { Footer } from '../../components/footer/footer';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
-import { Film } from '../../types/film';
+import { Film } from '../../types.ts';
 import { FilmList } from '../../components/film-list/film-list';
 import { Link, useParams } from 'react-router-dom';
 import { ErrorScreen } from '../error-screen/error-screen';
 import { Tabs } from '../../components/tabs/tabs';
-import {useAppSelector} from '../../components/hooks/hooks.ts';
 
 export type MovieProps = {
   films: Film[];
@@ -16,7 +15,6 @@ export function MovieScreen({ films }: MovieProps) {
   window.scrollTo(0, 0);
   const { id } = useParams();
   const currentFilm = films.at(Number(id));
-  const filmsGenre = useAppSelector((state) => state.filmList);
 
   if (!currentFilm) {
     return <ErrorScreen />;
@@ -28,8 +26,8 @@ export function MovieScreen({ films }: MovieProps) {
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
-              src={currentFilm.imagePath}
-              alt={currentFilm.title}
+              src={currentFilm.previewImage}
+              alt={currentFilm.name}
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
@@ -39,7 +37,7 @@ export function MovieScreen({ films }: MovieProps) {
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{currentFilm.title}</h2>
+              <h2 className="film-card__title">{currentFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{currentFilm.genre}</span>
                 <span className="film-card__year">{currentFilm.releaseYear}</span>
@@ -67,20 +65,20 @@ export function MovieScreen({ films }: MovieProps) {
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img
-                src={currentFilm.imagePath}
-                alt={`${currentFilm.title} poster`}
+                src={currentFilm.previewImage}
+                alt={`${currentFilm.name} poster`}
                 width={218}
                 height={327}
               />
             </div>
-            <Tabs films={filmsGenre}></Tabs>
+            <Tabs films={films}></Tabs>
           </div>
         </div>
       </section>
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={filmsGenre}/>
+          <FilmList films={films}/>
         </section>
         <Footer />
       </div>

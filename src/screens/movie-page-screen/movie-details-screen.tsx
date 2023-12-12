@@ -22,8 +22,8 @@ export function MoviePageDetailsScreen({ films }: MoviePageDetailsProps) {
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
-              src={film.imagePath}
-              alt={film.title}
+              src={film.previewImage}
+              alt={film.name}
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
@@ -33,7 +33,7 @@ export function MoviePageDetailsScreen({ films }: MoviePageDetailsProps) {
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{film.title}</h2>
+              <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{film.genre}</span>
                 <span className="film-card__year">{film.releaseYear}</span>
@@ -63,8 +63,8 @@ export function MoviePageDetailsScreen({ films }: MoviePageDetailsProps) {
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img
-                src={film.posterImagePath}
-                alt={`${film.title} poster`}
+                src={film.previewImage}
+                alt={`${film.name} poster`}
                 width={218}
                 height={327}
               />

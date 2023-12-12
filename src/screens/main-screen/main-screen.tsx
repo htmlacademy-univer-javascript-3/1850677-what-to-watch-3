@@ -1,7 +1,7 @@
 import { Footer } from '../../components/footer/footer';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
-import { Film } from '../../types/film';
+import { Film } from '../../types.ts';
 import { FilmList } from '../../components/film-list/film-list';
 import { GenreList } from '../../components/genre-list/genre-list';
 import {useAppSelector} from '../../components/hooks/hooks.ts';
@@ -12,13 +12,13 @@ export type MainScreenProps = {
 }
 
 export function MainScreen({ promoFilm }: MainScreenProps): JSX.Element {
-  const filmsGenre = useAppSelector((state) => state.filmList);
+  const filmsGenre = useAppSelector((state) => state.sortedFilmList);
   const filmCardCount = useAppSelector((state) => state.filmCardCount);
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.imagePath} alt={promoFilm.title} />
+          <img src={promoFilm.previewImage} alt={promoFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -31,11 +31,11 @@ export function MainScreen({ promoFilm }: MainScreenProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoFilm.posterImagePath} alt={`${promoFilm.title} poster`} width="218" height="327" />
+              <img src={promoFilm.previewImage} alt={`${promoFilm.name} poster`} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.title}</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{promoFilm.genre}</span>
                 <span className="film-card__year">{promoFilm.releaseYear}</span>

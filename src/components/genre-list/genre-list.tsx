@@ -1,4 +1,3 @@
-import { films } from '../../mocks/films.ts';
 import { changeGenre, getFilmsByGenre } from '../../store/actions.ts';
 import { Genre } from '../../const.ts';
 import { useAppSelector, useAppDispatch } from '../hooks/hooks.ts';
@@ -6,6 +5,7 @@ import { useAppSelector, useAppDispatch } from '../hooks/hooks.ts';
 export function GenreList() {
   const dispatch = useAppDispatch();
   const currentGenre = useAppSelector((state) => state.genre);
+  const films = useAppSelector((state) => state.sortedFilmList);
   const genres: Genre[] = [Genre.All, ...new Set(films.map((x) => x.genre))];
 
   return (

@@ -1,4 +1,4 @@
-import { Film } from '../../types/film';
+import { Film } from '../../types.ts';
 import { useState } from 'react';
 import { Overview } from './overview/overview';
 import { Details } from './details/details';

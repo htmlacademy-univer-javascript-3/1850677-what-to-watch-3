@@ -1,4 +1,4 @@
-import { Film } from '../../types/film';
+import { Film } from '../../types.ts';
 import { FilmCard } from '../film-card/film-card';
 
 type FilmListProps = {
@@ -8,7 +8,7 @@ type FilmListProps = {
 export function FilmList({films}: FilmListProps) {
   return (
     <div className="catalog__films-list">
-      {films.map((film) => <FilmCard key={film.title} film={film} />)}
+      {films.map((film) => <FilmCard key={film.name} film={film} />)}
     </div>
   );
 }

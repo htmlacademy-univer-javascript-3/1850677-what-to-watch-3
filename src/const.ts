@@ -25,3 +25,9 @@ export enum Genre {
   SciFi = 'Sci-Fi',
   Thriller = 'Thriller'
 }
+
+export enum APIRoute {
+  Films = '/films',
+  Login = '/login',
+  Logout = '/logout',
+}

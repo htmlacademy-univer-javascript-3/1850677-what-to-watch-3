@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AddReviewForm } from '../../components/add-review-form/add-review-form';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
-import { Film } from '../../types/film';
+import { Film } from '../../types.ts';
 import { Link, useParams } from 'react-router-dom';
 import { ErrorScreen } from '../error-screen/error-screen';
 import { AppRoute } from '../../const';
@@ -26,8 +26,8 @@ export function AddReviewScreen({ films }: AddReviewProps) {
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
-            src={film.imagePath}
-            alt={film.title}
+            src={film.previewImage}
+            alt={film.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -37,7 +37,7 @@ export function AddReviewScreen({ films }: AddReviewProps) {
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <Link to={AppRoute.Film} className="breadcrumbs__link">
-                  {film.title}
+                  {film.name}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
@@ -49,8 +49,8 @@ export function AddReviewScreen({ films }: AddReviewProps) {
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={film.posterImagePath}
-            alt={film.title}
+            src={film.previewImage}
+            alt={film.name}
             width={218}
             height={327}
           />
