@@ -37,7 +37,7 @@ export function MoviePageReviewScreen({ films }: MoviePageReviewProps) {
               <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{film.genre}</span>
-                <span className="film-card__year">{film.releaseYear}</span>
+                <span className="film-card__year">{film.released}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
@@ -100,7 +100,7 @@ export function MoviePageReviewScreen({ films }: MoviePageReviewProps) {
                     author='Kate Muir'
                     dateTime='2016-12-24'
                     dateDisplay='December 24, 2016'
-                    rating='8,9'
+                    rating={7}
                   />
 
                   <FilmCardReview
@@ -112,7 +112,7 @@ export function MoviePageReviewScreen({ films }: MoviePageReviewProps) {
                     author='Bill Goodykoontz'
                     dateTime='2015-11-18'
                     dateDisplay='November 18, 2015'
-                    rating='8,0'
+                    rating={7}
                   />
 
                   <FilmCardReview
@@ -122,7 +122,7 @@ export function MoviePageReviewScreen({ films }: MoviePageReviewProps) {
                     author='Amanda Greever'
                     dateTime='2015-11-18'
                     dateDisplay='November 18, 2015'
-                    rating='8,0'
+                    rating={7}
                   />
 
                   <FilmCardReview
@@ -132,7 +132,7 @@ export function MoviePageReviewScreen({ films }: MoviePageReviewProps) {
                     author='Matthew Lickona'
                     dateTime='2016-12-20'
                     dateDisplay='December 20, 2016'
-                    rating='7,2'
+                    rating={7}
                   />
 
                   <FilmCardReview
@@ -141,7 +141,7 @@ export function MoviePageReviewScreen({ films }: MoviePageReviewProps) {
                     author='Paula Fleri-Soler'
                     dateTime='2016-12-20'
                     dateDisplay='December 20, 2016'
-                    rating='7,6'
+                    rating={7}
                   />
 
                   <FilmCardReview
@@ -150,7 +150,7 @@ export function MoviePageReviewScreen({ films }: MoviePageReviewProps) {
                     author='Paula Fleri-Soler'
                     dateTime='2016-12-20'
                     dateDisplay='December 20, 2016'
-                    rating='7,0'
+                    rating={7}
                   />
 
                 </div>

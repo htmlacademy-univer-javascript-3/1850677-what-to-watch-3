@@ -36,7 +36,7 @@ export function MoviePageDetailsScreen({ films }: MoviePageDetailsProps) {
               <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{film.genre}</span>
-                <span className="film-card__year">{film.releaseYear}</span>
+                <span className="film-card__year">{film.released}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
@@ -116,7 +116,7 @@ export function MoviePageDetailsScreen({ films }: MoviePageDetailsProps) {
                 <div className="film-card__text-col">
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Run Time</strong>
-                    <span className="film-card__details-value">{film.duration}</span>
+                    <span className="film-card__details-value">{film.runTime}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Genre</strong>
@@ -124,7 +124,7 @@ export function MoviePageDetailsScreen({ films }: MoviePageDetailsProps) {
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Released</strong>
-                    <span className="film-card__details-value">{film.releaseYear}</span>
+                    <span className="film-card__details-value">{film.released}</span>
                   </p>
                 </div>
               </div>

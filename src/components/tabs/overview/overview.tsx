@@ -1,12 +1,9 @@
-import { useParams } from 'react-router-dom';
 import { ErrorScreen } from '../../../screens/error-screen/error-screen';
-import { MovieProps } from '../../../screens/movie-page-screen/movie-screen';
+import {useAppSelector} from '../../hooks/hooks.ts';
+import {RatingLevel} from '../../ratingLevel/ratingLevel.tsx';
 
-type OverviewProps = MovieProps;
-
-export function Overview({ films }: OverviewProps) {
-  const { id } = useParams();
-  const currentFilm = films.at(Number(id));
+export function Overview() {
+  const currentFilm = useAppSelector((state) => state.film);
 
   if (!currentFilm) {
     return <ErrorScreen />;
@@ -17,8 +14,8 @@ export function Overview({ films }: OverviewProps) {
       <div className="film-rating">
         <div className="film-rating__score">{currentFilm.rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">{currentFilm.ratingLevel}</span>
-          <span className="film-rating__count">{currentFilm.ratingCount} ratings</span>
+          <RatingLevel rating={currentFilm.rating}></RatingLevel>
+          <span className="film-rating__count">{currentFilm.scoresCount} ratings</span>
         </p>
       </div>
       <div className="film-card__text">

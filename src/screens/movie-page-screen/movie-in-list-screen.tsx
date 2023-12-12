@@ -5,6 +5,7 @@ import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
 import { MovieProps } from './movie-screen';
 import { ErrorScreen } from '../error-screen/error-screen';
+import {RatingLevel} from '../../components/ratingLevel/ratingLevel.tsx';
 
 type MoviePageInListProps = MovieProps;
 
@@ -36,7 +37,7 @@ export function MoviePageInListScreen({ films }: MoviePageInListProps) {
               <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{film.genre}</span>
-                <span className="film-card__year">{film.releaseYear}</span>
+                <span className="film-card__year">{film.released}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
@@ -92,8 +93,8 @@ export function MoviePageInListScreen({ films }: MoviePageInListProps) {
               <div className="film-rating">
                 <div className="film-rating__score">{film.rating}</div>
                 <p className="film-rating__meta">
-                  <span className="film-rating__level">{film.ratingLevel}</span>
-                  <span className="film-rating__count">{film.ratingCount} ratings</span>
+                  <RatingLevel rating={film.rating}></RatingLevel>
+                  <span className="film-rating__count">{film.scoresCount} ratings</span>
                 </p>
               </div>
               <div className="film-card__text">

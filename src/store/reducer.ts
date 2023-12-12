@@ -1,8 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {AuthorizationStatus, Genre} from '../const';
 import {
-  changeGenre,
-  getFilms,
+  changeGenre, getFilm,
+  getFilms, getRelatedFilms, getReviews,
   requireAuthorization,
   setDataLoadingStatus,
   setFilmCardCount
@@ -11,7 +11,10 @@ import {InitialState} from '../types.ts';
 
 const initialStateProps: InitialState = {
   genre: Genre.All,
+  film: null,
   filmList: [],
+  reviewList: [],
+  relatedFilms: [],
   sortedFilmList: [],
   filmCardCount: 8,
   dataIsLoading: false,
@@ -45,6 +48,18 @@ const reducer = createReducer(initialStateProps, (builder) => {
 
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+
+    .addCase(getFilm, (state, action) => {
+      state.film = action.payload;
+    })
+
+    .addCase(getRelatedFilms, (state, action) => {
+      state.relatedFilms = action.payload;
+    })
+
+    .addCase(getReviews, (state, action)=>{
+      state.reviewList = action.payload;
     });
 });
 
