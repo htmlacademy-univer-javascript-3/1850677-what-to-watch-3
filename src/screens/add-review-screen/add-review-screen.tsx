@@ -49,7 +49,7 @@ export function AddReviewScreen({ films }: AddReviewProps) {
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={film.posterImagePath}
+            src={film.previewImage}
             alt={film.name}
             width={218}
             height={327}
