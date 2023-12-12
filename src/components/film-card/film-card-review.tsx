@@ -3,7 +3,7 @@ type ReviewProps = {
   author: string;
   dateTime: string;
   dateDisplay: string;
-  rating: string;
+  rating: number;
 }
 
 export function FilmCardReview({text, author, dateTime, dateDisplay, rating} : ReviewProps) {

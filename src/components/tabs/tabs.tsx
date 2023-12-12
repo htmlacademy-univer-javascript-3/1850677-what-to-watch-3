@@ -1,22 +1,20 @@
-import { Film } from '../../types.ts';
 import { useState } from 'react';
 import { Overview } from './overview/overview';
 import { Details } from './details/details';
-import { Review } from './review/review';
+import { Reviews } from './review/review';
+import {useAppSelector} from '../hooks/hooks.ts';
 
-type TabProps = {
-  films: Film[];
-}
 
-export function Tabs({ films }: TabProps) {
+export function Tabs() {
   const [tab, setTab] = useState('Overview');
+  const reviews = useAppSelector((state) => state.reviewList);
   const getTab = (tabName: string) => {
     if (tabName === 'Overview') {
-      return <Overview films={films}></Overview>;
+      return <Overview></Overview>;
     } else if (tabName === 'Details') {
-      return <Details films={films}></Details>;
+      return <Details></Details>;
     } else {
-      return <Review films={films}></Review>;
+      return <Reviews reviews={reviews}></Reviews>;
     }
   };
 

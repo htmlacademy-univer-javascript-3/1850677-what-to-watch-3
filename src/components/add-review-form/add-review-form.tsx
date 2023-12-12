@@ -1,19 +1,40 @@
-import {useState, FormEvent} from 'react';
+import {useState, FormEvent, useRef, ChangeEvent} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../hooks/hooks.ts';
+import {ErrorScreen} from '../../screens/error-screen/error-screen.tsx';
+import {sendReview} from '../../store/api-actions.ts';
 
-type AddReviewFormProps = {
-  onAnswer: (rating: number) => void;
-};
+export function AddReviewForm(): JSX.Element {
+  const commentRef = useRef<HTMLTextAreaElement>(null);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const film = useAppSelector((state) => state.film);
+  const [filmRating, setFilmRating] = useState(0);
 
-export function AddReviewForm({ onAnswer }: AddReviewFormProps): JSX.Element {
-  const [userAnswers, setUserAnswers] = useState(0);
+  if (!film) {
+    return <ErrorScreen />;
+  }
+
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setFilmRating(Number(evt.target.value));
+  };
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    if (filmRating && commentRef.current?.value) {
+      dispatch(sendReview({
+        filmId: film.id,
+        rating: filmRating,
+        comment: commentRef.current.value}));
+      navigate(`/films/${film.id}`);
+    }
+  };
+
   return (
     <form
       action="#"
       className="add-review__form"
-      onSubmit={(evt: FormEvent<HTMLFormElement>) => {
-        evt.preventDefault();
-        onAnswer(userAnswers);
-      }}
+      onSubmit={handleSubmit}
     >
       <div className="rating">
         <div className="rating__stars">
@@ -25,9 +46,7 @@ export function AddReviewForm({ onAnswer }: AddReviewFormProps): JSX.Element {
                 type="radio"
                 name="rating"
                 value={starCount}
-                onChange={() => {
-                  setUserAnswers(starCount);
-                }}
+                onChange={handleChange}
               />
               <label className="rating__label" htmlFor={`star-${starCount}`}>
                 Rating {starCount}
@@ -43,10 +62,11 @@ export function AddReviewForm({ onAnswer }: AddReviewFormProps): JSX.Element {
           name="review-text"
           id="review-text"
           placeholder="Review text"
+          ref={commentRef}
         >
         </textarea>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">
+          <button className="add-review__btn" type="submit" disabled={!commentRef.current?.value || commentRef.current?.value.length < 50 || commentRef.current?.value.length > 400 || !filmRating}>
             Post
           </button>
         </div>

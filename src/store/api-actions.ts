@@ -1,9 +1,9 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {getFilms, requireAuthorization, setDataLoadingStatus} from './actions.ts';
+import {getFilm, getFilms, getRelatedFilms, getReviews, requireAuthorization, setDataLoadingStatus} from './actions.ts';
 import {saveToken, dropToken} from '../services/token.ts';
 import {APIRoute, AuthorizationStatus} from '../const.ts';
-import {AuthData, Film} from '../types.ts';
+import {AuthData, Film, Review, UserReview} from '../types.ts';
 import {AppDispatch, State, UserData} from '../types.ts';
 
 export const fetchFilmsAction = createAsyncThunk<void, undefined, {
@@ -60,4 +60,50 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     dropToken();
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   },
+);
+
+export const fetchFilmByIDAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchFilmById',
+  async (filmId: string, { dispatch, extra: api }) => {
+    const { data } = await api.get<Film>(`${APIRoute.Films}/${filmId}`);
+    dispatch(getFilm(data));
+  });
+
+export const fetchReviewsByIDAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchReviewsById',
+  async (filmId: string, { dispatch, extra: api }) => {
+    const { data } = await api.get<Review[]>(`${APIRoute.Reviews}/${filmId}`);
+    dispatch(getReviews(data));
+  });
+
+export const fetchSimilarFilmsByIDAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchSimilarFilmsById',
+  async (filmId: string, { dispatch, extra: api }) => {
+    const { data } = await api.get<Film[]>(`${APIRoute.Films}/${filmId}${APIRoute.Similar}`);
+    dispatch(getRelatedFilms(data));
+  });
+
+export const sendReview = createAsyncThunk<void, UserReview, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'sendReview',
+  async ({ comment, rating, filmId }, { dispatch, extra: api }) => {
+    dispatch(setDataLoadingStatus(true));
+    await api.post<UserReview>(`${APIRoute.Reviews}/${filmId}`, { comment, rating });
+    dispatch(setDataLoadingStatus(false));
+  }
 );

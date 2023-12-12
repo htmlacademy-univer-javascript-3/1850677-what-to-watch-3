@@ -28,6 +28,8 @@ export enum Genre {
 
 export enum APIRoute {
   Films = '/films',
+  Reviews = '/comments',
+  Similar = '/similar',
   Login = '/login',
   Logout = '/logout',
 }

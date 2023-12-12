@@ -50,7 +50,7 @@ export function App(props: AppProps) {
 
           <Route
             path={AppRoute.Film}
-            element={<MovieScreen films={films}/>}
+            element={<MovieScreen/>}
           />
 
           <Route

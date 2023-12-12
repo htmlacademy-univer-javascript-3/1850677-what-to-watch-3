@@ -1,15 +1,12 @@
-import { useParams } from 'react-router-dom';
-import { ErrorScreen } from '../../../screens/error-screen/error-screen';
-import { MovieProps } from '../../../screens/movie-page-screen/movie-screen';
+import {ErrorScreen} from '../../../screens/error-screen/error-screen';
+import {useAppSelector} from '../../hooks/hooks.ts';
+import React from 'react';
 
-type DetailsProps = MovieProps;
-
-export function Details({ films }: DetailsProps) {
-  const { id } = useParams();
-  const currentFilm = films.at(Number(id));
+export function Details() {
+  const currentFilm = useAppSelector((state) => state.film);
 
   if (!currentFilm) {
-    return <ErrorScreen />;
+    return <ErrorScreen/>;
   }
 
   return (
@@ -22,25 +19,16 @@ export function Details({ films }: DetailsProps) {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            Bill Murray, <br />
-            Edward Norton, <br />
-            Jude Law, <br />
-            Willem Dafoe, <br />
-            Saoirse Ronan, <br />
-            Tony Revoloru, <br />
-            Tilda Swinton, <br />
-            Tom Wilkinson, <br />
-            Owen Wilkinson, <br />
-            Adrien Brody, <br />
-            Ralph Fiennes, <br />
-            Jeff Goldblum
+            {currentFilm.starring.map((star) => (
+              <React.Fragment key={star}>{star}, <br /> </React.Fragment>
+            ))}
           </span>
         </p>
       </div>
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{currentFilm.duration}</span>
+          <span className="film-card__details-value">{currentFilm.runTime}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
@@ -48,7 +36,7 @@ export function Details({ films }: DetailsProps) {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{currentFilm.releaseYear}</span>
+          <span className="film-card__details-value">{currentFilm.released}</span>
         </p>
       </div>
     </div>);

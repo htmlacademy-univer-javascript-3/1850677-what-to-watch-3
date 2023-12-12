@@ -15,19 +15,20 @@ const root = ReactDOM.createRoot(
 );
 
 export const PromoFilm: Film = {
+  posterImage: '',
   description: '',
   director: '',
-  duration: '',
-  id: 0,
+  runTime: '',
+  id: 'promo',
   previewImage: 'img/the-grand-budapest-hotel-poster.jpg',
   rating: 0,
-  ratingCount: 0,
-  ratingLevel: '',
+  scoresCount: 0,
+  backgroundImage: '',
   starring: [],
   previewVideoLink: '',
   name: 'The Grand Budapest Hotel',
   genre: Genre.Drama,
-  releaseYear: 2014
+  released: 2014
 };
 
 root.render(
