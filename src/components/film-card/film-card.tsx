@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {Film} from '../../types/film';
+import {Film} from '../../types.ts';
 import {Link} from 'react-router-dom';
 import {VideoPlayer} from '../video-player/video-player';
 import './film-card.css';
@@ -33,11 +33,11 @@ export function FilmCard({film}: FilmCardProps): JSX.Element {
         }}
         to={`/films/${film.id}`}
       >
-        {isPlaying ? <VideoPlayer isPlaying={isPlaying} isMuted src={film.videoUrl} poster={film.posterImagePath}/> :
-          <img src={film.imagePath} alt={film.title}/>}
+        {isPlaying ? <VideoPlayer isPlaying={isPlaying} isMuted src={film.previewVideoLink} poster={film.previewImage}/> :
+          <img src={film.previewImage} alt={film.name}/>}
 
       </Link>
-      <h3 className="small-film-card__title">{!isPlaying && film.title}</h3>
+      <h3 className="small-film-card__title">{!isPlaying && film.name}</h3>
     </article>
   );
 }

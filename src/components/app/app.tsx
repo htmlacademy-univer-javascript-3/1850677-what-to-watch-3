@@ -9,14 +9,22 @@ import {PlayerScreen} from '../../screens/player-screen/player-screen';
 import {PrivateRoute} from '../private-route/private-route';
 import {AddReviewScreen} from '../../screens/add-review-screen/add-review-screen';
 import {HelmetProvider} from 'react-helmet-async';
-import {Film} from '../../types/film.ts';
+import {Film} from '../../types.ts';
+import {useAppSelector} from '../hooks/hooks.ts';
+//import {LoadingScreen} from '../../screens/loading-screen/loading-screen.tsx';
 
 type AppProps = {
   promoFilm: Film;
-  films: Film[];
 }
 
 export function App(props: AppProps) {
+  const films = useAppSelector((state) => state.sortedFilmList);
+  //const isFilmsDataLoading = useAppSelector((state) => state.dataIsLoading);
+  //if (isFilmsDataLoading) {
+  //  return (
+  //    <LoadingScreen />
+  //  );
+  //}
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -37,24 +45,24 @@ export function App(props: AppProps) {
               <PrivateRoute
                 authorizationStatus={AuthorizationStatus.NoAuth}
               >
-                <MyListScreen films={props.films}/>
+                <MyListScreen films={films}/>
               </PrivateRoute>
             }
           />
 
           <Route
             path={AppRoute.Film}
-            element={<MovieScreen films={props.films}/>}
+            element={<MovieScreen films={films}/>}
           />
 
           <Route
             path={AppRoute.AddReview}
-            element={<AddReviewScreen films={props.films}/>}
+            element={<AddReviewScreen films={films}/>}
           />
 
           <Route
             path={AppRoute.Player}
-            element={<PlayerScreen videoUrl={props.promoFilm.videoUrl}/>}
+            element={<PlayerScreen videoUrl={props.promoFilm.previewVideoLink}/>}
           />
 
           <Route

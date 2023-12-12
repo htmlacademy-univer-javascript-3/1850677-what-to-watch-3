@@ -2,7 +2,7 @@ import { FilmList } from '../../components/film-list/film-list';
 import { Footer } from '../../components/footer/footer';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
-import { Film } from '../../types/film';
+import { Film } from '../../types.ts';
 
 type MyListProps = {
   films: Film[];
