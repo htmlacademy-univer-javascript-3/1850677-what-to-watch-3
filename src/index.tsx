@@ -19,7 +19,7 @@ export const PromoFilm: Film = {
   director: '',
   duration: '',
   id: 0,
-  previewImage: '',
+  previewImage: 'img/the-grand-budapest-hotel-poster.jpg',
   rating: 0,
   ratingCount: 0,
   ratingLevel: '',

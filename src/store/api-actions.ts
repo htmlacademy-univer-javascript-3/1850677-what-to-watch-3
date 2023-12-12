@@ -11,7 +11,7 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchQuestions',
+  'fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setDataLoadingStatus(true));
     const {data} = await api.get<Film[]>(APIRoute.Films);
@@ -25,7 +25,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'user/checkAuth',
+  'checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     try {
       await api.get(APIRoute.Login);

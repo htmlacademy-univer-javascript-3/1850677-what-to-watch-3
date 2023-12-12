@@ -1,5 +1,5 @@
 import {MainScreen} from '../../screens/main-screen/main-screen';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import {ErrorScreen} from '../../screens/error-screen/error-screen';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {SignInScreen} from '../../screens/sign-in-screen/sign-in-screen';
@@ -42,9 +42,7 @@ export function App(props: AppProps) {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NoAuth}
-              >
+              <PrivateRoute>
                 <MyListScreen films={films}/>
               </PrivateRoute>
             }
