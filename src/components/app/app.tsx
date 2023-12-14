@@ -41,7 +41,7 @@ export function App() {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authStatus={authorisationStatus}>
+              <PrivateRoute authorizationStatus={authorisationStatus}>
                 <MyListScreen/>
               </PrivateRoute>
             }
