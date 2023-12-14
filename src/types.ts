@@ -16,6 +16,8 @@ export type Film = {
   starring: string[];
   runTime: string;
   previewVideoLink: string;
+  videoLink: string;
+  isFavorite: boolean;
 }
 
 export type Review = {
@@ -54,6 +56,8 @@ export type MainState = {
   dataIsLoading: boolean;
   error: string | null;
   promo: Film | null;
+  favoriteFilmsCount: number;
+  favoriteFilmsList: Film[];
 }
 
 export type FilmState = {
