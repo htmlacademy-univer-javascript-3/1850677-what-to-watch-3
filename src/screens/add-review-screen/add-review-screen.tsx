@@ -4,10 +4,11 @@ import { UserBlock } from '../../components/user-block/user-block';
 import { Link } from 'react-router-dom';
 import { ErrorScreen } from '../error-screen/error-screen';
 import {useAppSelector} from '../../components/hooks/hooks.ts';
+import {getFilm} from '../../store/film-reducer/selectors.ts';
 
 
 export function AddReviewScreen() {
-  const currentFilm = useAppSelector((state) => state.film);
+  const currentFilm = useAppSelector(getFilm);
 
   if (!currentFilm) {
     return <ErrorScreen />;

@@ -2,7 +2,7 @@ import {useState, FormEvent, useRef, ChangeEvent} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../hooks/hooks.ts';
 import {ErrorScreen} from '../../screens/error-screen/error-screen.tsx';
-import {sendReview} from '../../store/api-actions.ts';
+import {sendReviewAction} from '../../store/api-actions.ts';
 
 export function AddReviewForm(): JSX.Element {
   const commentRef = useRef<HTMLTextAreaElement>(null);
@@ -22,7 +22,7 @@ export function AddReviewForm(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (filmRating && commentRef.current?.value) {
-      dispatch(sendReview({
+      dispatch(sendReviewAction({
         filmId: film.id,
         rating: filmRating,
         comment: commentRef.current.value}));

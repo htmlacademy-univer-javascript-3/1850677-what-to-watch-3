@@ -1,37 +1,34 @@
-import { Footer } from '../../components/footer/footer';
-import { Logo } from '../../components/logo/logo';
-import { UserBlock } from '../../components/user-block/user-block';
-import { Film } from '../../types.ts';
-import { FilmList } from '../../components/film-list/film-list';
-import { GenreList } from '../../components/genre-list/genre-list';
+import {Footer} from '../../components/footer/footer';
+import {Logo} from '../../components/logo/logo';
+import {UserBlock} from '../../components/user-block/user-block';
+import {FilmList} from '../../components/film-list/film-list';
+import {GenreList} from '../../components/genre-list/genre-list';
 import {useAppSelector} from '../../components/hooks/hooks.ts';
 import {ShowMore} from '../../components/show-more/show-more.tsx';
+import {getFilmCardCount, getGenreFilmList, getPromoFilm} from '../../store/main-reducer/selectors.ts';
 
-export type MainScreenProps = {
-  promoFilm: Film;
-}
-
-export function MainScreen({ promoFilm }: MainScreenProps): JSX.Element {
-  const filmsGenre = useAppSelector((state) => state.sortedFilmList);
-  const filmCardCount = useAppSelector((state) => state.filmCardCount);
+export function MainScreen(): JSX.Element {
+  const promoFilm = useAppSelector(getPromoFilm);
+  const filmsGenre = useAppSelector(getGenreFilmList);
+  const filmCardCount = useAppSelector(getFilmCardCount);
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.previewImage} alt={promoFilm.name} />
+          <img src={promoFilm.previewImage} alt={promoFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header film-card__head">
-          <Logo />
-          <UserBlock />
+          <Logo/>
+          <UserBlock/>
         </header>
 
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoFilm.previewImage} alt={`${promoFilm.name} poster`} width="218" height="327" />
+              <img src={promoFilm.posterImage} alt={`${promoFilm.name} poster`} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
@@ -67,12 +64,12 @@ export function MainScreen({ promoFilm }: MainScreenProps): JSX.Element {
 
           <GenreList/>
 
-          <FilmList films={filmsGenre.slice(0, filmCardCount)} />
+          <FilmList films={filmsGenre.slice(0, filmCardCount)}/>
 
           {filmsGenre.length > filmCardCount ? <ShowMore/> : ''}
         </section>
 
-        <Footer />
+        <Footer/>
 
       </div>
     </>

@@ -5,6 +5,7 @@ import {useAppDispatch, useAppSelector} from '../../components/hooks/hooks.ts';
 import {loginAction} from '../../store/api-actions.ts';
 import {AppRoute, AuthorizationStatus} from '../../const.ts';
 import {useNavigate} from 'react-router-dom';
+import {getAuthorisationStatus} from '../../store/user-reducer/selectors.ts';
 
 export function SignInScreen() {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -12,7 +13,7 @@ export function SignInScreen() {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { authorizationStatus } = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorisationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     navigate(AppRoute.Main);
