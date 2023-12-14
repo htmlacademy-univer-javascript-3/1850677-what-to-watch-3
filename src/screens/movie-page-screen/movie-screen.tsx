@@ -26,20 +26,20 @@ export function MovieScreen() {
   const currentFilm = useAppSelector(getFilm);
   const similarFilms = useAppSelector(getSimilarFilms);
   const authorizationStatus = useAppSelector(getAuthorisationStatus);
-
   const isFilmsDataLoading = useAppSelector(getLoadingState);
-
-  if (isFilmsDataLoading) {
-    return (
-      <LoadingScreen />
-    );
-  }
 
   useEffect(() => {
     dispatch(fetchFilmByIDAction(String(id)));
     dispatch(fetchReviewsByIDAction(String(id)));
     dispatch(fetchSimilarFilmsByIDAction(String(id)));
   }, [id, dispatch]);
+
+
+  if (isFilmsDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   if (!currentFilm) {
     return <ErrorScreen />;
