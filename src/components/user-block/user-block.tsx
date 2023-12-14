@@ -3,9 +3,11 @@ import {logoutAction} from '../../store/api-actions.ts';
 import React from 'react';
 import {AuthorizationStatus} from '../../const.ts';
 import {Link} from 'react-router-dom';
+import {getAuthorisationStatus, getAvatar} from '../../store/user-reducer/selectors.ts';
 
 export function UserBlock() {
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorisationStatus);
+  const avatar = useAppSelector(getAvatar);
   const dispatch = useAppDispatch();
 
   const signOutClickHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -28,7 +30,7 @@ export function UserBlock() {
       <li className="user-block__item">
         <div className="user-block__avatar">
           <img
-            src="/img/avatar.jpg"
+            src={avatar || ''}
             alt="User avatar"
           />
         </div>

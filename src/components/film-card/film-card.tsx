@@ -41,4 +41,3 @@ export function FilmCard({film}: FilmCardProps): JSX.Element {
     </article>
   );
 }
-

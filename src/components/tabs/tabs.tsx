@@ -3,11 +3,12 @@ import { Overview } from './overview/overview';
 import { Details } from './details/details';
 import { Reviews } from './review/review';
 import {useAppSelector} from '../hooks/hooks.ts';
+import {getReviews} from '../../store/film-reducer/selectors.ts';
 
 
 export function Tabs() {
   const [tab, setTab] = useState('Overview');
-  const reviews = useAppSelector((state) => state.reviewList);
+  const reviews = useAppSelector(getReviews);
   const getTab = (tabName: string) => {
     if (tabName === 'Overview') {
       return <Overview></Overview>;

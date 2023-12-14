@@ -22,3 +22,4 @@ export function FilmCardReview({text, author, dateTime, dateDisplay, rating} : R
     </div>
   );
 }
+

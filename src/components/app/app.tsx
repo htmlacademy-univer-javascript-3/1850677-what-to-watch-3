@@ -9,29 +9,27 @@ import {PlayerScreen} from '../../screens/player-screen/player-screen';
 import {PrivateRoute} from '../private-route/private-route';
 import {AddReviewScreen} from '../../screens/add-review-screen/add-review-screen';
 import {HelmetProvider} from 'react-helmet-async';
-import {Film} from '../../types.ts';
 import {useAppSelector} from '../hooks/hooks.ts';
-//import {LoadingScreen} from '../../screens/loading-screen/loading-screen.tsx';
+import {getGenreFilmList, getLoadingState} from '../../store/main-reducer/selectors.ts';
+import {LoadingScreen} from '../../screens/loading-screen/loading-screen.tsx';
 
-type AppProps = {
-  promoFilm: Film;
-}
+export function App() {
+  const films = useAppSelector(getGenreFilmList);
+  const isFilmsDataLoading = useAppSelector(getLoadingState);
 
-export function App(props: AppProps) {
-  const films = useAppSelector((state) => state.sortedFilmList);
-  //const isFilmsDataLoading = useAppSelector((state) => state.dataIsLoading);
-  //if (isFilmsDataLoading) {
-  //  return (
-  //    <LoadingScreen />
-  //  );
-  //}
+  if (isFilmsDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainScreen {...props} />}
+            element={<MainScreen/>}
           />
 
           <Route
@@ -60,7 +58,7 @@ export function App(props: AppProps) {
 
           <Route
             path={AppRoute.Player}
-            element={<PlayerScreen videoUrl={props.promoFilm.previewVideoLink}/>}
+            element={<PlayerScreen/>}
           />
 
           <Route

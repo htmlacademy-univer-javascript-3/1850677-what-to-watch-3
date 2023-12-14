@@ -8,9 +8,12 @@ import { ErrorScreen } from '../error-screen/error-screen';
 import { Tabs } from '../../components/tabs/tabs';
 import {useAppDispatch, useAppSelector} from '../../components/hooks/hooks.ts';
 import {useEffect} from 'react';
-import {setDataLoadingStatus} from '../../store/actions.ts';
 import {fetchFilmByIDAction, fetchSimilarFilmsByIDAction, fetchReviewsByIDAction} from '../../store/api-actions.ts';
 import {AuthorizationStatus} from '../../const.ts';
+import {getFilm, getSimilarFilms} from '../../store/film-reducer/selectors.ts';
+import {getAuthorisationStatus} from '../../store/user-reducer/selectors.ts';
+import {getLoadingState} from '../../store/main-reducer/selectors.ts';
+import {LoadingScreen} from '../loading-screen/loading-screen.tsx';
 
 export type MovieProps = {
   films: Film[];
@@ -20,17 +23,23 @@ export function MovieScreen() {
   window.scrollTo(0, 0);
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const currentFilm = useAppSelector((state) => state.film);
-  const relatedFilms = useAppSelector((state) => state.relatedFilms);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const currentFilm = useAppSelector(getFilm);
+  const similarFilms = useAppSelector(getSimilarFilms);
+  const authorizationStatus = useAppSelector(getAuthorisationStatus);
+  const isFilmsDataLoading = useAppSelector(getLoadingState);
 
   useEffect(() => {
-    dispatch(setDataLoadingStatus(true));
     dispatch(fetchFilmByIDAction(String(id)));
-    dispatch(fetchSimilarFilmsByIDAction(String(id)));
     dispatch(fetchReviewsByIDAction(String(id)));
-    dispatch(setDataLoadingStatus(false));
+    dispatch(fetchSimilarFilmsByIDAction(String(id)));
   }, [id, dispatch]);
+
+
+  if (isFilmsDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   if (!currentFilm) {
     return <ErrorScreen />;
@@ -98,7 +107,7 @@ export function MovieScreen() {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={relatedFilms}/>
+          <FilmList films={similarFilms}/>
         </section>
         <Footer />
       </div>

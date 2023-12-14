@@ -1,11 +1,12 @@
 import { changeGenre, getFilmsByGenre } from '../../store/actions.ts';
 import { Genre } from '../../const.ts';
 import { useAppSelector, useAppDispatch } from '../hooks/hooks.ts';
+import {getCurrentGenre, getFilmList} from '../../store/main-reducer/selectors.ts';
 
 export function GenreList() {
   const dispatch = useAppDispatch();
-  const currentGenre = useAppSelector((state) => state.genre);
-  const films = useAppSelector((state) => state.sortedFilmList);
+  const currentGenre = useAppSelector(getCurrentGenre);
+  const films = useAppSelector(getFilmList);
   const genres: Genre[] = [Genre.All, ...new Set(films.map((x) => x.genre))];
 
   return (

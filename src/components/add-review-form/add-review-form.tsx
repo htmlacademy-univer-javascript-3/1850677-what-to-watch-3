@@ -2,13 +2,14 @@ import {useState, FormEvent, useRef, ChangeEvent} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../hooks/hooks.ts';
 import {ErrorScreen} from '../../screens/error-screen/error-screen.tsx';
-import {sendReview} from '../../store/api-actions.ts';
+import {sendReviewAction} from '../../store/api-actions.ts';
+import {getFilm} from '../../store/film-reducer/selectors.ts';
 
 export function AddReviewForm(): JSX.Element {
   const commentRef = useRef<HTMLTextAreaElement>(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const film = useAppSelector((state) => state.film);
+  const film = useAppSelector(getFilm);
   const [filmRating, setFilmRating] = useState(0);
 
   if (!film) {
@@ -22,7 +23,7 @@ export function AddReviewForm(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (filmRating && commentRef.current?.value) {
-      dispatch(sendReview({
+      dispatch(sendReviewAction({
         filmId: film.id,
         rating: filmRating,
         comment: commentRef.current.value}));

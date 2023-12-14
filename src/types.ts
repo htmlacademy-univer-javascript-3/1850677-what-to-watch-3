@@ -46,18 +46,26 @@ export type AuthData = {
   password: string;
 };
 
-export type InitialState = {
+export type MainState = {
   genre: Genre;
-  film: Film | null;
   filmList: Film[];
-  reviewList: Review[];
-  relatedFilms: Film[];
   sortedFilmList: Film[];
   filmCardCount: number;
   dataIsLoading: boolean;
-  authorizationStatus: AuthorizationStatus;
   error: string | null;
-  userData: UserData | null;
+  promo: Film | null;
+}
+
+export type FilmState = {
+  film: Film | null;
+  reviews: Review[];
+  similarFilms: Film[];
+  dataIsLoading: boolean;
+}
+
+export type UserState = {
+  authorizationStatus: AuthorizationStatus;
+  avatar: string | null;
 }
 
 export type State = ReturnType<typeof store.getState>;
