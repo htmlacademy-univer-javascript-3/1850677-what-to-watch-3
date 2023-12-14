@@ -1,4 +1,4 @@
-import {memo, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Film} from '../../types.ts';
 import {Link} from 'react-router-dom';
 import {VideoPlayer} from '../video-player/video-player';
@@ -8,7 +8,7 @@ type FilmCardProps = {
   film: Film;
 }
 
-function FilmCard({film}: FilmCardProps): JSX.Element {
+export function FilmCard({film}: FilmCardProps): JSX.Element {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isNeedToPlay, setIsNeedToPlay] = useState(false);
   let flag = true;
@@ -41,5 +41,3 @@ function FilmCard({film}: FilmCardProps): JSX.Element {
     </article>
   );
 }
-
-export default memo(FilmCard);

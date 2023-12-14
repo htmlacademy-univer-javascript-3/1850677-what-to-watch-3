@@ -1,5 +1,3 @@
-import {memo} from 'react';
-
 type ReviewProps = {
   text: string;
   author: string;
@@ -8,7 +6,7 @@ type ReviewProps = {
   rating: number;
 }
 
-function FilmCardReview({text, author, dateTime, dateDisplay, rating} : ReviewProps) {
+export function FilmCardReview({text, author, dateTime, dateDisplay, rating} : ReviewProps) {
   return (
     <div className="review">
       <blockquote className="review__quote">
@@ -25,4 +23,3 @@ function FilmCardReview({text, author, dateTime, dateDisplay, rating} : ReviewPr
   );
 }
 
-export default memo(FilmCardReview);
