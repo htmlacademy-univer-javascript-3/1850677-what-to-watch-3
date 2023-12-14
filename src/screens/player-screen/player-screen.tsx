@@ -48,7 +48,7 @@ export function PlayerScreen() {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (id != null) {
+    if (typeof id === 'string') {
       dispatch(fetchFilmByIDAction(id));
     }
     setIsPause(true);
