@@ -67,7 +67,9 @@ export function PlayerScreen() {
   return (
     <div className="player">
       <video src={currentFilm.videoLink} className="player__video" poster={currentFilm.posterImage}
-             ref={videoRef} onTimeUpdate={updateTime}></video>
+        ref={videoRef} onTimeUpdate={updateTime}
+      >
+      </video>
 
       <Link to={`${APIRoute.Films}/${currentFilm?.id}`} type="button" className="player__exit">
         Exit
