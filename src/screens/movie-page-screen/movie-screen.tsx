@@ -37,8 +37,8 @@ export function MovieScreen() {
 
   useEffect(() => {
     dispatch(fetchFilmByIDAction(String(id)));
-    dispatch(fetchSimilarFilmsByIDAction(String(id)));
     dispatch(fetchReviewsByIDAction(String(id)));
+    dispatch(fetchSimilarFilmsByIDAction(String(id)));
   }, [id, dispatch]);
 
   if (!currentFilm) {
