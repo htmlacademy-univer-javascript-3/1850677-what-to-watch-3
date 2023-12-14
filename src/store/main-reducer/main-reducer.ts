@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { MainState} from '../../types.ts';
-import { changeGenre, setError } from '../actions';
+import {changeGenre, setError, setFilmCardCount} from '../actions';
 import {fetchFilmsAction, fetchPromoFilmAction} from '../api-actions.ts';
 import {Genre, Reducer} from '../../const.ts';
 
 const initialState: MainState = {
+  promo: null,
   filmList: [],
   sortedFilmList: [],
   genre: Genre.All,
   filmCardCount: 0,
   dataIsLoading: false,
-  error: null,
-  promo: null
+  error: null
 };
 
 export const mainReducer = createSlice({
@@ -28,6 +28,12 @@ export const mainReducer = createSlice({
       .addCase(setError, (state, action) => {
         state.error = action.payload;
       })
+
+      .addCase(setFilmCardCount, (state) => {
+        const filmsByGenre = state.sortedFilmList.length;
+        state.filmCardCount = (state.filmCardCount + 8 > filmsByGenre) ? filmsByGenre : state.filmCardCount + 8;
+      })
+
       .addCase(fetchFilmsAction.pending, (state) => {
         state.dataIsLoading = true;
       })

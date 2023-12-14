@@ -7,15 +7,20 @@ import {useAppSelector} from '../../components/hooks/hooks.ts';
 import {ShowMore} from '../../components/show-more/show-more.tsx';
 import {getFilmCardCount, getGenreFilmList, getPromoFilm} from '../../store/main-reducer/selectors.ts';
 
-export function MainScreen(): JSX.Element {
+export function MainScreen() {
   const promoFilm = useAppSelector(getPromoFilm);
   const filmsGenre = useAppSelector(getGenreFilmList);
   const filmCardCount = useAppSelector(getFilmCardCount);
+
+  if (!promoFilm) {
+    return null;
+  }
+
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.previewImage} alt={promoFilm.name}/>
+          <img src={promoFilm.backgroundImage} alt={promoFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>

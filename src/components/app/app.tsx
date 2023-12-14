@@ -10,17 +10,19 @@ import {PrivateRoute} from '../private-route/private-route';
 import {AddReviewScreen} from '../../screens/add-review-screen/add-review-screen';
 import {HelmetProvider} from 'react-helmet-async';
 import {useAppSelector} from '../hooks/hooks.ts';
-import {getGenreFilmList} from '../../store/main-reducer/selectors.ts';
-//import {LoadingScreen} from '../../screens/loading-screen/loading-screen.tsx';
+import {getGenreFilmList, getLoadingState} from '../../store/main-reducer/selectors.ts';
+import {LoadingScreen} from '../../screens/loading-screen/loading-screen.tsx';
 
 export function App() {
   const films = useAppSelector(getGenreFilmList);
-  //const isFilmsDataLoading = useAppSelector(getLoadingState);
-  //if (isFilmsDataLoading) {
-  //  return (
-  //    <LoadingScreen />
-  //  );
-  //}
+  const isFilmsDataLoading = useAppSelector(getLoadingState);
+
+  if (isFilmsDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>

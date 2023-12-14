@@ -7,7 +7,8 @@ import {Reducer} from '../../const.ts';
 const initialState: FilmState = {
   film: null,
   reviews: [],
-  similarFilms: []
+  similarFilms: [],
+  dataIsLoading: false
 };
 
 export const filmReducer = createSlice({
@@ -16,8 +17,13 @@ export const filmReducer = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchFilmByIDAction.pending, (state) => {
+        state.dataIsLoading = true;
+      })
+
       .addCase(fetchFilmByIDAction.fulfilled, (state, action) => {
         state.film = action.payload;
+        state.dataIsLoading = false;
       })
       .addCase(fetchReviewsByIDAction.fulfilled, (state, action) => {
         state.reviews = action.payload;

@@ -1,9 +1,10 @@
 import { ErrorScreen } from '../../../screens/error-screen/error-screen';
 import {useAppSelector} from '../../hooks/hooks.ts';
 import {RatingLevel} from '../../ratingLevel/ratingLevel.tsx';
+import {getFilm} from '../../../store/film-reducer/selectors.ts';
 
 export function Overview() {
-  const currentFilm = useAppSelector((state) => state.film);
+  const currentFilm = useAppSelector(getFilm);
 
   if (!currentFilm) {
     return <ErrorScreen />;

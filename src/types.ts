@@ -53,13 +53,14 @@ export type MainState = {
   filmCardCount: number;
   dataIsLoading: boolean;
   error: string | null;
-  promo: Film;
+  promo: Film | null;
 }
 
 export type FilmState = {
   film: Film | null;
   reviews: Review[];
   similarFilms: Film[];
+  dataIsLoading: boolean;
 }
 
 export type UserState = {

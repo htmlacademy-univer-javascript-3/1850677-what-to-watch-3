@@ -8,11 +8,12 @@ import { ErrorScreen } from '../error-screen/error-screen';
 import { Tabs } from '../../components/tabs/tabs';
 import {useAppDispatch, useAppSelector} from '../../components/hooks/hooks.ts';
 import {useEffect} from 'react';
-import {setDataLoadingStatus} from '../../store/actions.ts';
 import {fetchFilmByIDAction, fetchSimilarFilmsByIDAction, fetchReviewsByIDAction} from '../../store/api-actions.ts';
 import {AuthorizationStatus} from '../../const.ts';
 import {getFilm, getSimilarFilms} from '../../store/film-reducer/selectors.ts';
 import {getAuthorisationStatus} from '../../store/user-reducer/selectors.ts';
+import {getLoadingState} from '../../store/main-reducer/selectors.ts';
+import {LoadingScreen} from '../loading-screen/loading-screen.tsx';
 
 export type MovieProps = {
   films: Film[];
@@ -26,12 +27,18 @@ export function MovieScreen() {
   const similarFilms = useAppSelector(getSimilarFilms);
   const authorizationStatus = useAppSelector(getAuthorisationStatus);
 
+  const isFilmsDataLoading = useAppSelector(getLoadingState);
+
+  if (isFilmsDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   useEffect(() => {
-    dispatch(setDataLoadingStatus(true));
     dispatch(fetchFilmByIDAction(String(id)));
     dispatch(fetchSimilarFilmsByIDAction(String(id)));
     dispatch(fetchReviewsByIDAction(String(id)));
-    dispatch(setDataLoadingStatus(false));
   }, [id, dispatch]);
 
   if (!currentFilm) {

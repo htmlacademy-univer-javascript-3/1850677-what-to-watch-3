@@ -3,12 +3,13 @@ import {useNavigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../hooks/hooks.ts';
 import {ErrorScreen} from '../../screens/error-screen/error-screen.tsx';
 import {sendReviewAction} from '../../store/api-actions.ts';
+import {getFilm} from '../../store/film-reducer/selectors.ts';
 
 export function AddReviewForm(): JSX.Element {
   const commentRef = useRef<HTMLTextAreaElement>(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const film = useAppSelector((state) => state.film);
+  const film = useAppSelector(getFilm);
   const [filmRating, setFilmRating] = useState(0);
 
   if (!film) {
