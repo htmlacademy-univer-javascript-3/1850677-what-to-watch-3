@@ -128,4 +128,3 @@ export const changeFavoriteStatusAction = createAsyncThunk<Film, { filmId: strin
     return data;
   }
 );
-

@@ -1,7 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {MainState} from '../../types.ts';
 import {changeGenre, setError, setFavoriteCount, setFilmCardCount} from '../actions';
-import {fetchFavoriteFilmsAction, fetchFilmsAction, fetchPromoFilmAction} from '../api-actions.ts';
+import {
+  changeFavoriteStatusAction,
+  fetchFavoriteFilmsAction,
+  fetchFilmsAction,
+  fetchPromoFilmAction
+} from '../api-actions.ts';
 import {Genre, Reducer} from '../../const.ts';
 
 const initialState: MainState = {
@@ -55,6 +60,9 @@ export const mainReducer = createSlice({
       })
       .addCase(setFavoriteCount, (state, action) => {
         state.favoriteFilmsCount = action.payload;
+      })
+      .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {
+        state.promo = action.payload;
       });
   },
 });

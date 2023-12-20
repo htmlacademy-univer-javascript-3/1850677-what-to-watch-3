@@ -1,7 +1,6 @@
 import {Footer} from '../../components/footer/footer';
 import {Logo} from '../../components/logo/logo';
 import {UserBlock} from '../../components/user-block/user-block';
-import {Film} from '../../types.ts';
 import {FilmList} from '../../components/film-list/film-list';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {ErrorScreen} from '../error-screen/error-screen';
@@ -21,10 +20,6 @@ import {getLoadingState} from '../../store/film-reducer/selectors.ts';
 import {LoadingScreen} from '../loading-screen/loading-screen.tsx';
 import {getFavoriteFilmsCount} from '../../store/main-reducer/selectors.ts';
 import {setFavoriteCount} from '../../store/actions.ts';
-
-export type MovieProps = {
-  films: Film[];
-}
 
 export function MovieScreen() {
   window.scrollTo(0, 0);
@@ -70,8 +65,6 @@ export function MovieScreen() {
       }
     }
   };
-
-
   return (
     <>
       <section className="film-card film-card--full">

@@ -17,6 +17,7 @@ import {getAuthorisationStatus} from '../../store/user-reducer/selectors.ts';
 import {useEffect} from 'react';
 import {changeFavoriteStatusAction, fetchFavoriteFilmsAction} from '../../store/api-actions.ts';
 import {setFavoriteCount} from '../../store/actions.ts';
+import {LoadingScreen} from '../loading-screen/loading-screen.tsx';
 
 export function MainScreen() {
   const promoFilm = useAppSelector(getPromoFilm);
@@ -34,7 +35,7 @@ export function MainScreen() {
   }, [dispatch, authorizationStatus]);
 
   if (!promoFilm) {
-    return null;
+    return <LoadingScreen/>;
   }
 
   const changeFavorite = () => {

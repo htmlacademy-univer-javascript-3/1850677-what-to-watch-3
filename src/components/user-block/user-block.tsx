@@ -1,7 +1,7 @@
 import {useAppDispatch, useAppSelector} from '../hooks/hooks.ts';
 import {logoutAction} from '../../store/api-actions.ts';
 import React from 'react';
-import {AuthorizationStatus} from '../../const.ts';
+import {AppRoute, AuthorizationStatus} from '../../const.ts';
 import {Link} from 'react-router-dom';
 import {getAuthorisationStatus, getAvatar} from '../../store/user-reducer/selectors.ts';
 
@@ -29,10 +29,12 @@ export function UserBlock() {
     <ul className="user-block">
       <li className="user-block__item">
         <div className="user-block__avatar">
-          <img
-            src={avatar || ''}
-            alt="User avatar"
-          />
+          <Link to={AppRoute.MyList}>
+            <img
+              src={avatar || ''}
+              alt="User avatar"
+            />
+          </Link>
         </div>
       </li>
       <li className="user-block__item">
