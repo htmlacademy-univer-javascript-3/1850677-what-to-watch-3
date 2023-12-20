@@ -3,6 +3,7 @@ import {Film} from '../../types.ts';
 import {Link} from 'react-router-dom';
 import {VideoPlayer} from '../video-player/video-player';
 import './film-card.css';
+import {APIRoute} from '../../const.ts';
 
 type FilmCardProps = {
   film: Film;
@@ -31,7 +32,7 @@ export function FilmCard({film}: FilmCardProps): JSX.Element {
           setIsNeedToPlay(false);
           setIsPlaying(false);
         }}
-        to={`/films/${film.id}`}
+        to={`${APIRoute.Films}/${film.id}`}
       >
         {isPlaying ? <VideoPlayer isPlaying={isPlaying} isMuted src={film.previewVideoLink} poster={film.previewImage}/> :
           <img src={film.previewImage} alt={film.name}/>}

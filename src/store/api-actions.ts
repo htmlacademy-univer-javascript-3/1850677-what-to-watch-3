@@ -16,6 +16,17 @@ export const fetchFilmsAction = createAsyncThunk<Film[], undefined, {
   },
 );
 
+export const fetchFavoriteFilmsAction = createAsyncThunk<Film[], undefined, {
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchFavoriteFilms',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<Film[]>(APIRoute.Favorite);
+    return data;
+  }
+);
+
 export const fetchPromoFilmAction = createAsyncThunk<Film, undefined, {
   state: State;
   extra: AxiosInstance;
@@ -103,5 +114,17 @@ export const sendReviewAction = createAsyncThunk<void, UserReview, {
   'sendReview',
   async ({ comment, rating, filmId }, {extra: api }) => {
     await api.post<UserReview>(`${APIRoute.Reviews}/${filmId}`, { comment, rating });
+  }
+);
+
+export const changeFavoriteStatusAction = createAsyncThunk<Film, { filmId: string; status: boolean }, {
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'changeFavoriteStatus',
+  async ({ filmId: id, status: isFavorite }, { extra: api }) => {
+    const urlFavorite = isFavorite ? 1 : 0;
+    const { data } = await api.post<Film>(`${APIRoute.Favorite}/${id}/${urlFavorite}`);
+    return data;
   }
 );

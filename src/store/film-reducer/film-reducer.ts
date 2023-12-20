@@ -1,7 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
-import { FilmState} from '../../types.ts';
-import { fetchReviewsByIDAction, fetchFilmByIDAction, fetchSimilarFilmsByIDAction } from '../api-actions.ts';
+import {FilmState} from '../../types.ts';
+import {
+  fetchReviewsByIDAction,
+  fetchFilmByIDAction,
+  fetchSimilarFilmsByIDAction,
+  changeFavoriteStatusAction
+} from '../api-actions.ts';
 import {Reducer} from '../../const.ts';
 
 const initialState: FilmState = {
@@ -20,7 +25,6 @@ export const filmReducer = createSlice({
       .addCase(fetchFilmByIDAction.pending, (state) => {
         state.dataIsLoading = true;
       })
-
       .addCase(fetchFilmByIDAction.fulfilled, (state, action) => {
         state.film = action.payload;
         state.dataIsLoading = false;
@@ -30,6 +34,9 @@ export const filmReducer = createSlice({
       })
       .addCase(fetchSimilarFilmsByIDAction.fulfilled, (state, action) => {
         state.similarFilms = action.payload;
+      })
+      .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {
+        state.film = action.payload;
       });
-  },
+  }
 });

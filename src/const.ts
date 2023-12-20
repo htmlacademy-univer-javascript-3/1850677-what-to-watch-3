@@ -32,7 +32,9 @@ export enum APIRoute {
   Similar = '/similar',
   Login = '/login',
   Logout = '/logout',
-  Promo = '/promo'
+  Promo = '/promo',
+  Player = '/player',
+  Favorite = '/favorite'
 }
 
 export enum Reducer {

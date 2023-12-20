@@ -6,6 +6,7 @@ export const changeGenre = createAction('changeGenre', (genre: Genre) => ({ payl
 export const getFilmsByGenre = createAction('getFilmsByGenre');
 export const getFilms = createAction<Film[]>('getFilms');
 export const setFilmCardCount = createAction('setFilmCardCount');
+export const setFavoriteCount = createAction<number>('setFavoriteCount');
 export const setDataLoadingStatus = createAction<boolean>('setDataLoadingStatus');
 export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization ');
 export const getFilm = createAction<Film>('getFilm');

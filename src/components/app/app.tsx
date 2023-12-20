@@ -10,12 +10,13 @@ import {PrivateRoute} from '../private-route/private-route';
 import {AddReviewScreen} from '../../screens/add-review-screen/add-review-screen';
 import {HelmetProvider} from 'react-helmet-async';
 import {useAppSelector} from '../hooks/hooks.ts';
-import {getGenreFilmList, getLoadingState} from '../../store/main-reducer/selectors.ts';
+import {getLoadingState} from '../../store/main-reducer/selectors.ts';
 import {LoadingScreen} from '../../screens/loading-screen/loading-screen.tsx';
+import {getAuthorisationStatus} from '../../store/user-reducer/selectors.ts';
 
 export function App() {
-  const films = useAppSelector(getGenreFilmList);
   const isFilmsDataLoading = useAppSelector(getLoadingState);
+  const authorisationStatus = useAppSelector(getAuthorisationStatus);
 
   if (isFilmsDataLoading) {
     return (
@@ -40,8 +41,8 @@ export function App() {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute>
-                <MyListScreen films={films}/>
+              <PrivateRoute authorizationStatus={authorisationStatus}>
+                <MyListScreen/>
               </PrivateRoute>
             }
           />

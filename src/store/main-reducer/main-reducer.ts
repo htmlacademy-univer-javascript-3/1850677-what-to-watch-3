@@ -1,10 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { MainState} from '../../types.ts';
-import {changeGenre, setError, setFilmCardCount} from '../actions';
-import {fetchFilmsAction, fetchPromoFilmAction} from '../api-actions.ts';
+import {createSlice} from '@reduxjs/toolkit';
+import {MainState} from '../../types.ts';
+import {changeGenre, setError, setFavoriteCount, setFilmCardCount} from '../actions';
+import {
+  changeFavoriteStatusAction,
+  fetchFavoriteFilmsAction,
+  fetchFilmsAction,
+  fetchPromoFilmAction
+} from '../api-actions.ts';
 import {Genre, Reducer} from '../../const.ts';
 
 const initialState: MainState = {
+  favoriteFilmsCount: 0,
+  favoriteFilmsList: [],
   promo: null,
   filmList: [],
   sortedFilmList: [],
@@ -44,6 +51,17 @@ export const mainReducer = createSlice({
         state.dataIsLoading = false;
       })
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
+        state.promo = action.payload;
+      })
+      .addCase(fetchFavoriteFilmsAction.fulfilled, (state, action) => {
+        state.favoriteFilmsList = action.payload;
+        state.favoriteFilmsCount = state.favoriteFilmsList.length;
+        state.dataIsLoading = false;
+      })
+      .addCase(setFavoriteCount, (state, action) => {
+        state.favoriteFilmsCount = action.payload;
+      })
+      .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {
         state.promo = action.payload;
       });
   },
