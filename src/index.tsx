@@ -5,6 +5,9 @@ import {store} from './store';
 import {Provider} from 'react-redux';
 import {checkAuthAction, fetchFilmsAction, fetchPromoFilmAction} from './store/api-actions.ts';
 import {ToastContainer} from 'react-toastify';
+import {HelmetProvider} from 'react-helmet-async';
+import {BrowserRouter} from 'react-router-dom';
+import {ScrollToTop} from './components/scroll-to-top/scroll-to-top.tsx';
 
 store.dispatch(fetchFilmsAction());
 store.dispatch(checkAuthAction());
@@ -17,8 +20,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ToastContainer />
-      <App/>
+      <HelmetProvider>
+        <BrowserRouter>
+          <ScrollToTop/>
+          <ToastContainer />
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
     </Provider>
   </React.StrictMode>
 );

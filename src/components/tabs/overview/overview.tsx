@@ -26,7 +26,7 @@ export function Overview() {
         </p>
         <p className="film-card__starring">
           <strong>
-            Starring: {currentFilm.starring}
+            Starring: {currentFilm.starring.join(', ')}
           </strong>
         </p>
       </div>

@@ -22,7 +22,6 @@ import {getFavoriteFilmsCount} from '../../store/main-reducer/selectors.ts';
 import {setFavoriteCount} from '../../store/actions.ts';
 
 export function MovieScreen() {
-  window.scrollTo(0, 0);
   const dispatch = useAppDispatch();
   const {id} = useParams();
   const currentFilm = useAppSelector(getFilm);
