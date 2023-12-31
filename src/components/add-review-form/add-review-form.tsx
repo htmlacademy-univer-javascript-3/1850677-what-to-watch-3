@@ -1,20 +1,14 @@
 import {useState, FormEvent, useRef, ChangeEvent} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../hooks/hooks.ts';
-import {ErrorScreen} from '../../screens/error-screen/error-screen.tsx';
+import {useNavigate, useParams} from 'react-router-dom';
+import {useAppDispatch} from '../hooks/hooks.ts';
 import {sendReviewAction} from '../../store/api-actions.ts';
-import {getFilm} from '../../store/film-reducer/selectors.ts';
 
 export function AddReviewForm(): JSX.Element {
   const commentRef = useRef<HTMLTextAreaElement>(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const film = useAppSelector(getFilm);
+  const { id = '' } = useParams();
   const [filmRating, setFilmRating] = useState(0);
-
-  if (!film) {
-    return <ErrorScreen />;
-  }
 
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setFilmRating(Number(evt.target.value));
@@ -24,10 +18,10 @@ export function AddReviewForm(): JSX.Element {
     evt.preventDefault();
     if (filmRating && commentRef.current?.value) {
       dispatch(sendReviewAction({
-        filmId: film.id,
+        filmId: id,
         rating: filmRating,
         comment: commentRef.current.value}));
-      navigate(`/films/${film.id}`);
+      navigate(`/films/${id}`);
     }
   };
 
