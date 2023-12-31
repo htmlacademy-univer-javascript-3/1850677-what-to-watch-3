@@ -1,10 +1,11 @@
 import {ErrorScreen} from '../../../screens/error-screen/error-screen';
-import {useAppSelector} from '../../hooks/hooks.ts';
-import {getFilm} from '../../../store/film-reducer/selectors.ts';
+import {Film} from '../../../types.ts';
 
-export function Details() {
-  const currentFilm = useAppSelector(getFilm);
+type DetailsProps = {
+  currentFilm: Film | null;
+}
 
+export function Details({currentFilm} : DetailsProps) {
   if (!currentFilm) {
     return <ErrorScreen/>;
   }

@@ -8,7 +8,7 @@ type ReviewProps = {
 export function Reviews({reviews}: ReviewProps) {
   return (
     <div className="film-card__reviews film-card__row">
-      <div className="film-card__reviews-col">
+      <div className="film-card__reviews-col" data-testid="reviews">
         {reviews.map((review) =>
           (
             <FilmCardReview key={review.id}
