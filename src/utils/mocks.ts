@@ -1,4 +1,4 @@
-import {AuthorizationStatus, Genre, Reducer} from '../const.ts';
+import {AuthorizationStatus, Genre, LoginStatus, Reducer} from '../const.ts';
 import {Film, Review, State} from '../types.ts';
 import {ThunkDispatch} from '@reduxjs/toolkit';
 import {createAPI} from '../services/api.ts';
@@ -62,6 +62,7 @@ export const makeFakeStore = (initialState?: Partial<State>): State => ({
   [Reducer.User]: {
     authorizationStatus: AuthorizationStatus.NoAuth,
     avatar: internet.url(),
+    loginStatus: LoginStatus.Success
   },
   [Reducer.Main]: {
     filmList: makeFakeFilmsList(),
