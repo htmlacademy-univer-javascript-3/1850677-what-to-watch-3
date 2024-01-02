@@ -15,7 +15,7 @@ describe('MainReducer Slice', () => {
       sortedFilmList: [],
       filmCardCount: 0,
       dataIsLoading: false,
-      favoriteFilmsList: [],
+      favoriteFilmList: [],
       favoriteFilmsCount: 0,
       error: null,
       promo: null,
@@ -45,7 +45,7 @@ describe('MainReducer Slice', () => {
     expect(result.dataIsLoading).toEqual(expectedDataIsLoading);
   });
 
-  it('should change "favoriteCount" with "setFavoriteCount"', () => {
+  it('should change "favoriteFilmsCount" with "setFavoriteCount"', () => {
     const expectedFavoriteCount = 3;
 
     const result = mainReducer.reducer(initialState, {

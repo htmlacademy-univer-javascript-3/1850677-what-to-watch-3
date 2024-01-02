@@ -10,7 +10,7 @@ import {State} from '../../types.ts';
 import {AuthorizationStatus} from '../../const.ts';
 import {MainScreen} from './main-screen.tsx';
 
-describe('Component: MainScreen', () => {
+describe('Screen: MainScreen', () => {
   const fakeFilm = makeFakeFilm();
   const fakeFilmsList = makeFakeFilmsList();
   const api = createAPI();
@@ -31,7 +31,7 @@ describe('Component: MainScreen', () => {
         filmList: fakeFilmsList,
         sortedFilmList: fakeFilmsList,
         promo: fakeFilm,
-        favoriteFilmsList: fakeFilmsList,
+        favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length
       }
     });
@@ -58,7 +58,7 @@ describe('Component: MainScreen', () => {
         filmList: fakeFilmsList,
         sortedFilmList: fakeFilmsList,
         promo: fakeFilm,
-        favoriteFilmsList: fakeFilmsList,
+        favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length
       }
     });

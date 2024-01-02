@@ -1,21 +1,23 @@
 import {Link, useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../components/hooks/hooks.ts';
-import {getFilm, getLoadingState} from '../../store/film-reducer/selectors.ts';
+import {getFilm} from '../../store/film-reducer/selectors.ts';
 import {useEffect, useRef, useState} from 'react';
 import {fetchFilmByIDAction} from '../../store/api-actions.ts';
 import {LoadingScreen} from '../loading-screen/loading-screen.tsx';
 import {ErrorScreen} from '../error-screen/error-screen.tsx';
-import {APIRoute} from '../../const.ts';
+import {APIRoute, Reducer} from '../../const.ts';
+import {PlayerState} from '../../components/player-state/player-state.tsx';
 
 export function PlayerScreen() {
   const {id} = useParams();
   const currentFilm = useAppSelector(getFilm);
-  const isFilmsDataLoading = useAppSelector(getLoadingState);
+  const isFilmDataLoading = useAppSelector((state) => state[Reducer.Film].dataIsLoading);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPause, setIsPause] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
 
+  const progressRef = useRef(null);
   const [progress, setProgress] = useState(0);
 
   const updateTime = () => {
@@ -48,13 +50,19 @@ export function PlayerScreen() {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (typeof id === 'string') {
+    let isMounted = true;
+
+    if (isMounted && id) {
       dispatch(fetchFilmByIDAction(id));
+      setIsPause(true);
     }
-    setIsPause(true);
+
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch, id]);
 
-  if (isFilmsDataLoading) {
+  if (isFilmDataLoading) {
     return (
       <LoadingScreen/>
     );
@@ -79,34 +87,24 @@ export function PlayerScreen() {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value={progress} max="100"></progress>
-            <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
+            <div className="player__toggler" style={{left: `${progress}%`}} ref={progressRef}>Toggler</div>
           </div>
           <div className="player__time-value">{getTimeLeft()}</div>
         </div>
 
         <div className="player__controls-row">
           <button type="button" className="player__play" onClick={onPlayPauseClick}>
-            {isPause ?
-              <>
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"/>
-                </svg>
-                <span>Play</span>
-              </> :
-              <>
-                <svg viewBox="0 0 14 21" width="14" height="21">
-                  <use xlinkHref="#pause"/>
-                </svg>
-                <span>Pause</span>
-              </>}
+            {isPause
+              ? <PlayerState viewBox={'0 0 19 19'} width={19} height={19} xlinkHref={'#play-s'} state={'Play'}/>
+              : <PlayerState viewBox={'0 0 14 21'} width={14} height={21} xlinkHref={'#pause'} state={'Pause'}/>}
           </button>
           <div className="player__name">Transpotting</div>
 
-          <button type="button" className="player__full-screen">
-            <svg viewBox="0 0 27 27" width="27" height="27">
-              <use xlinkHref="#full-screen"></use>
-            </svg>
-            <span>Full screen</span>
+          <button type="button" className="player__full-screen" onClick={() => {
+            videoRef.current?.requestFullscreen();
+          }}
+          >
+            <PlayerState viewBox={'0 0 27 27'} width={27} height={27} xlinkHref={'#full-screen'} state={'Full screen'}/>
           </button>
         </div>
       </div>

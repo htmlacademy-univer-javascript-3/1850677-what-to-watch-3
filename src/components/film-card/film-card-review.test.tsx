@@ -7,7 +7,7 @@ describe('Component: FilmCardReview', () => {
   it('should render correct', () => {
     const review = makeFakeReviews()[0];
 
-    render(<FilmCardReview text={review.comment} author={review.user} rating={review.rating} dateDisplay={review.date} dateTime={review.date} />);
+    render(<FilmCardReview text={review.comment} author={review.user} rating={review.rating} dateTime={review.date} />);
 
     expect(screen.queryByText(review.comment)).toBeInTheDocument();
     expect(screen.getByText(review.user)).toBeInTheDocument();

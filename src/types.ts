@@ -1,5 +1,5 @@
 import {store} from './store';
-import {AuthorizationStatus, Genre} from './const.ts';
+import {AuthorizationStatus, Genre, LoginStatus} from './const.ts';
 
 export type Film = {
   id: string;
@@ -57,7 +57,7 @@ export type MainState = {
   error: string | null;
   promo: Film | null;
   favoriteFilmsCount: number;
-  favoriteFilmsList: Film[];
+  favoriteFilmList: Film[];
 }
 
 export type FilmState = {
@@ -70,6 +70,7 @@ export type FilmState = {
 export type UserState = {
   authorizationStatus: AuthorizationStatus;
   avatar: string | null;
+  loginStatus: LoginStatus;
 }
 
 export type State = ReturnType<typeof store.getState>;

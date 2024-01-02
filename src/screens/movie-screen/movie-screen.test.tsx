@@ -10,7 +10,7 @@ import {State} from '../../types.ts';
 import {AuthorizationStatus} from '../../const.ts';
 import {MovieScreen} from './movie-screen.tsx';
 
-describe('Component: MovieScreen', () => {
+describe('Screen: MovieScreen', () => {
   const fakeFilm = makeFakeFilm();
   const fakeFilmsList = makeFakeFilmsList();
   const fakeReviews = makeFakeReviews();
@@ -37,7 +37,7 @@ describe('Component: MovieScreen', () => {
         filmList: fakeFilmsList,
         sortedFilmList: fakeFilmsList,
         promo: fakeFilm,
-        favoriteFilmsList: fakeFilmsList,
+        favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length
       }
     });
@@ -70,7 +70,7 @@ describe('Component: MovieScreen', () => {
         filmList: fakeFilmsList,
         sortedFilmList: fakeFilmsList,
         promo: fakeFilm,
-        favoriteFilmsList: fakeFilmsList,
+        favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length
       }
     });

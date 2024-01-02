@@ -1,5 +1,5 @@
 import {UserState} from '../../types.ts';
-import {AuthorizationStatus} from '../../const.ts';
+import {AuthorizationStatus, LoginStatus} from '../../const.ts';
 import {userReducer} from './user-reducer.ts';
 import {checkAuthAction} from '../api-actions.ts';
 
@@ -12,6 +12,7 @@ describe('UserReducer Slice', () => {
     const initialState: UserState = {
       authorizationStatus: AuthorizationStatus.NoAuth,
       avatar: null,
+      loginStatus: LoginStatus.Success
     };
     const emptyAction = { type: '' };
 
@@ -24,11 +25,13 @@ describe('UserReducer Slice', () => {
     const initialState: UserState = {
       authorizationStatus: AuthorizationStatus.NoAuth,
       avatar: null,
+      loginStatus: LoginStatus.Success
     };
 
     const expectedState: UserState = {
       authorizationStatus: AuthorizationStatus.Auth,
       avatar: user.avatarUrl,
+      loginStatus: LoginStatus.Success
     };
 
     const result = userReducer.reducer(initialState, {
@@ -43,10 +46,12 @@ describe('UserReducer Slice', () => {
     const initialState: UserState = {
       authorizationStatus: AuthorizationStatus.Auth,
       avatar: null,
+      loginStatus: LoginStatus.Success
     };
     const expectedState = {
       authorizationStatus: AuthorizationStatus.NoAuth,
       avatar: null,
+      loginStatus: LoginStatus.Success
     };
 
     const result = userReducer.reducer(initialState, checkAuthAction.rejected);

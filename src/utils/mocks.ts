@@ -71,7 +71,7 @@ export const makeFakeStore = (initialState?: Partial<State>): State => ({
     dataIsLoading: false,
     sortedFilmList: makeFakeFilmsList(),
     favoriteFilmsCount: getRandomNumber(1, 9),
-    favoriteFilmsList: makeFakeFilmsList(),
+    favoriteFilmList: makeFakeFilmsList(),
     filmCardCount: 8,
   },
   [Reducer.Film]: {

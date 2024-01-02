@@ -15,7 +15,6 @@ export function Reviews({reviews}: ReviewProps) {
               text={review.comment}
               author={review.user}
               rating={review.rating}
-              dateDisplay={review.date}
               dateTime={review.date}
             />
           ))}

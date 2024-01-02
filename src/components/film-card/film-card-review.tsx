@@ -2,11 +2,11 @@ type ReviewProps = {
   text: string;
   author: string;
   dateTime: string;
-  dateDisplay: string;
   rating: number;
 }
 
-export function FilmCardReview({text, author, dateTime, dateDisplay, rating} : ReviewProps) {
+export function FilmCardReview({text, author, dateTime, rating}: ReviewProps) {
+  const dateDisplay = (new Date(dateTime)).toLocaleString('default', {month: 'long', day: 'numeric', year: 'numeric'});
   return (
     <div className="review">
       <blockquote className="review__quote">

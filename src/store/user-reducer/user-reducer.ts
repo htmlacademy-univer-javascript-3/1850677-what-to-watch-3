@@ -1,18 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { UserState} from '../../types.ts';
-import { dropToken, saveToken } from '../../services/token';
-import { checkAuthAction, loginAction, logoutAction, } from '../api-actions';
-import {AuthorizationStatus, Reducer} from '../../const.ts';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {UserState} from '../../types.ts';
+import {dropToken, saveToken} from '../../services/token';
+import {checkAuthAction, loginAction, logoutAction,} from '../api-actions';
+import {AuthorizationStatus, LoginStatus, Reducer} from '../../const.ts';
 
 const initialState: UserState = {
   authorizationStatus: AuthorizationStatus.NoAuth,
   avatar: null,
+  loginStatus: LoginStatus.Success
 };
 
 export const userReducer = createSlice({
   name: Reducer.User,
   initialState,
-  reducers: {},
+  reducers: {
+    setLoginStatus: (state, action: PayloadAction<LoginStatus>) => {
+      state.loginStatus = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(logoutAction.fulfilled, (state) => {
@@ -34,3 +39,6 @@ export const userReducer = createSlice({
       });
   },
 });
+
+export const {setLoginStatus} = userReducer.actions;
+
