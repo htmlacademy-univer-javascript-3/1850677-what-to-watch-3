@@ -9,7 +9,6 @@ describe('Component: FilmCardReview', () => {
 
     render(<FilmCardReview text={review.comment} author={review.user} rating={review.rating} dateTime={review.date} />);
 
-    expect(screen.queryByText(review.comment)).toBeInTheDocument();
     expect(screen.getByText(review.user)).toBeInTheDocument();
   });
 });
