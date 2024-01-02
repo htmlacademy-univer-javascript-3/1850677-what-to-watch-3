@@ -1,14 +1,13 @@
-import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import {ErrorScreen} from './error-screen.tsx';
+import {withHistory, withStore} from '../../utils/mock-component.tsx';
 
-describe('Component: ErrorScreen', () => {
+describe('Screen: ErrorScreen', () => {
   it('should render correctly', () => {
-    render(
-      <MemoryRouter>
-        <ErrorScreen />
-      </MemoryRouter>
-    );
+    const { withStoreComponent } = withStore(<ErrorScreen/>, {});
+    const preparedComponent = withHistory(withStoreComponent);
+
+    render(preparedComponent);
 
     expect(screen.getByText('Ошибка')).toBeInTheDocument();
     expect(screen.getByText('404 Not Found')).toBeInTheDocument();

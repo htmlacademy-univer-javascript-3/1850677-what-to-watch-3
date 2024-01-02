@@ -2,6 +2,7 @@ import {useState, FormEvent, useRef, ChangeEvent} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useAppDispatch} from '../hooks/hooks.ts';
 import {sendReviewAction} from '../../store/api-actions.ts';
+import React from 'react';
 
 export function AddReviewForm(): JSX.Element {
   const commentRef = useRef<HTMLTextAreaElement>(null);
@@ -34,7 +35,7 @@ export function AddReviewForm(): JSX.Element {
       <div className="rating">
         <div className="rating__stars">
           {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((starCount) => (
-            <>
+            <React.Fragment key={`starCount${starCount}`}>
               <input
                 className="rating__input"
                 id={`star-${starCount}`}
@@ -46,7 +47,7 @@ export function AddReviewForm(): JSX.Element {
               <label className="rating__label" htmlFor={`star-${starCount}`}>
                 Rating {starCount}
               </label>
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>

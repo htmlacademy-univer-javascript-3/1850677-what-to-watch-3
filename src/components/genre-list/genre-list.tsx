@@ -12,7 +12,7 @@ export function GenreList() {
   return (
     <ul className="catalog__genres-list">
       {genres.map((genre) => (
-        <li key={genre} className={`catalog__genres-item ${genre === currentGenre ? 'catalog__genres-item--active' : ''}`}>
+        <li data-testid="genre-item" key={genre} className={`catalog__genres-item ${genre === currentGenre ? 'catalog__genres-item--active' : ''}`}>
           <button className="catalog__genres-link"
             onClick={() => {
               dispatch(changeGenre(genre));

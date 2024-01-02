@@ -1,4 +1,4 @@
-import {AuthorizationStatus, Genre, Reducer} from '../const.ts';
+import {AuthorizationStatus, Genre, LoginStatus, Reducer} from '../const.ts';
 import {Film, Review, State} from '../types.ts';
 import {ThunkDispatch} from '@reduxjs/toolkit';
 import {createAPI} from '../services/api.ts';
@@ -50,18 +50,11 @@ export const makeFakeReviews = () =>
       } as Review)
   );
 
-export const makeFakeUser = () => ({
-  name: name.firstName(),
-  avatarUrl: image.imageUrl(),
-  email: internet.email(),
-  token: datatype.string(20),
-});
-
-
 export const makeFakeStore = (initialState?: Partial<State>): State => ({
   [Reducer.User]: {
     authorizationStatus: AuthorizationStatus.NoAuth,
     avatar: internet.url(),
+    loginStatus: LoginStatus.Success
   },
   [Reducer.Main]: {
     filmList: makeFakeFilmsList(),
@@ -71,7 +64,7 @@ export const makeFakeStore = (initialState?: Partial<State>): State => ({
     dataIsLoading: false,
     sortedFilmList: makeFakeFilmsList(),
     favoriteFilmsCount: getRandomNumber(1, 9),
-    favoriteFilmsList: makeFakeFilmsList(),
+    favoriteFilmList: makeFakeFilmsList(),
     filmCardCount: 8,
   },
   [Reducer.Film]: {

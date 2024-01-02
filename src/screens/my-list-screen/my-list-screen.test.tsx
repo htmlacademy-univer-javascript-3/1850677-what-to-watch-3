@@ -10,7 +10,7 @@ import {State} from '../../types.ts';
 import {AuthorizationStatus} from '../../const.ts';
 import {MyListScreen} from './my-list-screen.tsx';
 
-describe('Component: MyListScreen', () => {
+describe('Screen: MyListScreen', () => {
   const fakeFilmsList = makeFakeFilmsList();
   const api = createAPI();
   const middlewares = [thunk.withExtraArgument(api)];
@@ -26,7 +26,7 @@ describe('Component: MyListScreen', () => {
         authorizationStatus: AuthorizationStatus.Auth,
       },
       MAIN: {
-        favoriteFilmsList: fakeFilmsList,
+        favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length,
       }
     });

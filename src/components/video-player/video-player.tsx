@@ -47,6 +47,7 @@ export function VideoPlayer({isPlaying, isMuted, src, poster}: VideoPlayerProps)
       ref={videoRef}
       poster={poster}
       muted={isMuted}
+      data-testid={'video-player'}
     >
     </video>
   );

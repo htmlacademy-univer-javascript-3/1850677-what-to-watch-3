@@ -7,10 +7,10 @@ import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import {makeFakeFilm, makeFakeFilmsList} from '../../utils/mocks.ts';
 import {State} from '../../types.ts';
-import {AuthorizationStatus} from '../../const.ts';
+import {AuthorizationStatus, LoginStatus} from '../../const.ts';
 import {MainScreen} from './main-screen.tsx';
 
-describe('Component: MainScreen', () => {
+describe('Screen: MainScreen', () => {
   const fakeFilm = makeFakeFilm();
   const fakeFilmsList = makeFakeFilmsList();
   const api = createAPI();
@@ -26,12 +26,13 @@ describe('Component: MainScreen', () => {
       USER: {
         authorizationStatus: AuthorizationStatus.Auth,
         avatar: null,
+        loginStatus: LoginStatus.Success
       },
       MAIN: {
         filmList: fakeFilmsList,
-        sortedFilmList: fakeFilmsList,
         promo: fakeFilm,
-        favoriteFilmsList: fakeFilmsList,
+        sortedFilmList: fakeFilmsList,
+        favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length
       }
     });
@@ -53,12 +54,13 @@ describe('Component: MainScreen', () => {
       USER: {
         authorizationStatus: AuthorizationStatus.NoAuth,
         avatar: null,
+        loginStatus: LoginStatus.Success
       },
       MAIN: {
         filmList: fakeFilmsList,
         sortedFilmList: fakeFilmsList,
         promo: fakeFilm,
-        favoriteFilmsList: fakeFilmsList,
+        favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length
       }
     });
