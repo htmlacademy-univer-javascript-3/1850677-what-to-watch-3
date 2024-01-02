@@ -35,7 +35,6 @@ describe('Screen: MovieScreen', () => {
       },
       MAIN: {
         filmList: fakeFilmsList,
-        sortedFilmList: fakeFilmsList,
         promo: fakeFilm,
         favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length
@@ -68,7 +67,6 @@ describe('Screen: MovieScreen', () => {
       },
       MAIN: {
         filmList: fakeFilmsList,
-        sortedFilmList: fakeFilmsList,
         promo: fakeFilm,
         favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length

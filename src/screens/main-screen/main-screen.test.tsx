@@ -7,7 +7,7 @@ import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import {makeFakeFilm, makeFakeFilmsList} from '../../utils/mocks.ts';
 import {State} from '../../types.ts';
-import {AuthorizationStatus} from '../../const.ts';
+import {AuthorizationStatus, LoginStatus} from '../../const.ts';
 import {MainScreen} from './main-screen.tsx';
 
 describe('Screen: MainScreen', () => {
@@ -26,11 +26,12 @@ describe('Screen: MainScreen', () => {
       USER: {
         authorizationStatus: AuthorizationStatus.Auth,
         avatar: null,
+        loginStatus: LoginStatus.Success
       },
       MAIN: {
         filmList: fakeFilmsList,
-        sortedFilmList: fakeFilmsList,
         promo: fakeFilm,
+        sortedFilmList: fakeFilmsList,
         favoriteFilmList: fakeFilmsList,
         favoriteFilmsCount: fakeFilmsList.length
       }
@@ -53,6 +54,7 @@ describe('Screen: MainScreen', () => {
       USER: {
         authorizationStatus: AuthorizationStatus.NoAuth,
         avatar: null,
+        loginStatus: LoginStatus.Success
       },
       MAIN: {
         filmList: fakeFilmsList,

@@ -6,7 +6,6 @@ import { ErrorScreen } from '../error-screen/error-screen';
 import {useAppSelector} from '../../components/hooks/hooks.ts';
 import {getFilm} from '../../store/film-reducer/selectors.ts';
 
-
 export function AddReviewScreen() {
   const currentFilm = useAppSelector(getFilm);
 

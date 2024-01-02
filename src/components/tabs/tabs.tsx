@@ -5,7 +5,6 @@ import { Reviews } from './review/review';
 import {useAppSelector} from '../hooks/hooks.ts';
 import {getFilm, getReviews} from '../../store/film-reducer/selectors.ts';
 
-
 export function Tabs() {
   const [tab, setTab] = useState('Overview');
   const reviews = useAppSelector(getReviews);

@@ -50,14 +50,6 @@ export const makeFakeReviews = () =>
       } as Review)
   );
 
-export const makeFakeUser = () => ({
-  name: name.firstName(),
-  avatarUrl: image.imageUrl(),
-  email: internet.email(),
-  token: datatype.string(20),
-});
-
-
 export const makeFakeStore = (initialState?: Partial<State>): State => ({
   [Reducer.User]: {
     authorizationStatus: AuthorizationStatus.NoAuth,
