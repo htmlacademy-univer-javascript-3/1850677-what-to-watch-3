@@ -1,11 +1,10 @@
 import { AddReviewForm } from '../../components/add-review-form/add-review-form';
 import { Logo } from '../../components/logo/logo';
 import { UserBlock } from '../../components/user-block/user-block';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { ErrorScreen } from '../error-screen/error-screen';
 import {useAppSelector} from '../../components/hooks/hooks.ts';
 import {getFilm} from '../../store/film-reducer/selectors.ts';
-
 
 export function AddReviewScreen() {
   const currentFilm = useAppSelector(getFilm);

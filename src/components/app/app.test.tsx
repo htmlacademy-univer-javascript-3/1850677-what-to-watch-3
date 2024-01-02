@@ -1,7 +1,7 @@
 import {describe, expect} from 'vitest';
-import {MemoryHistory, createMemoryHistory} from 'history';
+import {createMemoryHistory, MemoryHistory} from 'history';
 import {render, screen} from '@testing-library/react';
-import {AppRoute, AuthorizationStatus, Reducer} from '../../const';
+import {AppRoute, AuthorizationStatus, LoginStatus, Reducer} from '../../const';
 import {internet} from 'faker';
 import {withHistory, withStore} from '../../utils/mock-component.tsx';
 import {App} from './app.tsx';
@@ -14,7 +14,7 @@ describe('Application Routing', () => {
     mockHistory = createMemoryHistory();
   });
 
-  it('should render the "MainPage" when user navigate to "/"', () => {
+  it('should render the "MainScreen" when user navigate to "/"', () => {
     const withHistoryComponent = withHistory(<App/>, mockHistory);
     const {withStoreComponent} = withStore(withHistoryComponent, makeFakeStore());
     mockHistory.push(AppRoute.Main);
@@ -23,7 +23,7 @@ describe('Application Routing', () => {
     expect(screen.getByText('All Genres')).toBeInTheDocument();
   });
 
-  it('should render the "MyList" when user navigate to "/mylist"', () => {
+  it('should render the "MyListScreen" when user navigate to "/mylist"', () => {
     const withHistoryComponent = withHistory(<App/>, mockHistory);
     const {withStoreComponent} = withStore(
       withHistoryComponent,
@@ -31,6 +31,7 @@ describe('Application Routing', () => {
         [Reducer.User]: {
           authorizationStatus: AuthorizationStatus.Auth,
           avatar: internet.url(),
+          loginStatus: LoginStatus.Success
         },
       })
     );
@@ -40,7 +41,7 @@ describe('Application Routing', () => {
     expect(screen.getByText('My list')).toBeInTheDocument();
   });
 
-  it('should render the "SignIn" when user navigate to "/login"', () => {
+  it('should render the "SignInScreen" when user navigate to "/login"', () => {
     const withHistoryComponent = withHistory(<App/>, mockHistory);
     const {withStoreComponent} = withStore(withHistoryComponent, makeFakeStore());
     mockHistory.push(AppRoute.SignIn);
@@ -52,7 +53,7 @@ describe('Application Routing', () => {
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
   });
 
-  it('should render the "Player" when user navigate to "/player"', () => {
+  it('should render the "PlayerScreen" when user navigate to "/player"', () => {
     const withHistoryComponent = withHistory(<App/>, mockHistory);
     const {withStoreComponent} = withStore(withHistoryComponent, makeFakeStore());
     mockHistory.push(`${AppRoute.Player}`);
@@ -61,7 +62,7 @@ describe('Application Routing', () => {
     expect(screen.getByText('Exit')).toBeInTheDocument();
   });
 
-  it('should render the "Movie" when user navigate to "/films"', () => {
+  it('should render the "MovieScreen" when user navigate to "/films"', () => {
     const withHistoryComponent = withHistory(<App/>, mockHistory);
     const {withStoreComponent} = withStore(
       withHistoryComponent,
@@ -69,6 +70,7 @@ describe('Application Routing', () => {
         [Reducer.User]: {
           authorizationStatus: AuthorizationStatus.Auth,
           avatar: internet.url(),
+          loginStatus: LoginStatus.Success
         },
       })
     );
@@ -81,7 +83,7 @@ describe('Application Routing', () => {
     expect(screen.getAllByText('My list')[0]).toBeInTheDocument();
   });
 
-  it('should render the "NotFound" when user navigate to unknown route', () => {
+  it('should render the "ErrorScreen" when user navigate to unknown route', () => {
     const withHistoryComponent = withHistory(<App/>, mockHistory);
     const {withStoreComponent} = withStore(withHistoryComponent, makeFakeStore());
     mockHistory.push('/unknown');

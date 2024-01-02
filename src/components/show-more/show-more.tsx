@@ -1,7 +1,6 @@
 import {useAppDispatch} from '../hooks/hooks';
 import {setFilmCardCount} from '../../store/actions.ts';
 
-
 export function ShowMore() {
   const dispatch = useAppDispatch();
   return (

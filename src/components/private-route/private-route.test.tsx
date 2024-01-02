@@ -1,7 +1,7 @@
 import {beforeAll, beforeEach, describe} from 'vitest';
 import {createMemoryHistory, MemoryHistory} from 'history';
 import {Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus, Reducer} from '../../const.ts';
+import {AppRoute, AuthorizationStatus, LoginStatus, Reducer} from '../../const.ts';
 import {render, screen} from '@testing-library/react';
 import {withHistory, withStore} from '../../utils/mock-component.tsx';
 import {PrivateRoute} from './private-route.tsx';
@@ -35,7 +35,7 @@ describe('Component: PrivateRoute', () => {
       mockHistory
     );
     const { withStoreComponent } = withStore(preparedComponent, {
-      [Reducer.User]: { authorizationStatus: AuthorizationStatus.NoAuth, avatar: '' },
+      [Reducer.User]: { authorizationStatus: AuthorizationStatus.NoAuth, avatar: '', loginStatus: LoginStatus.Success},
     });
 
     render(withStoreComponent);
@@ -62,7 +62,7 @@ describe('Component: PrivateRoute', () => {
       mockHistory
     );
     const { withStoreComponent } = withStore(preparedComponent, {
-      [Reducer.User]: { authorizationStatus: AuthorizationStatus.Auth, avatar: '' },
+      [Reducer.User]: { authorizationStatus: AuthorizationStatus.Auth, avatar: '', loginStatus: LoginStatus.Success},
     });
 
     render(withStoreComponent);

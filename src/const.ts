@@ -42,3 +42,13 @@ export enum Reducer {
   Main = 'MAIN',
   Film = 'FILM',
 }
+
+export enum LoginStatus {
+  Success = 'Success',
+  IncorrectEmail = 'IncorrectEmail',
+  IncorrectPassword = 'IncorrectPassword',
+  IncorrectEmailAndPassword = 'IncorrectEmailAndPassword',
+}
+
+export const RE_PASSWORD = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;
+export const RE_EMAIL = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;

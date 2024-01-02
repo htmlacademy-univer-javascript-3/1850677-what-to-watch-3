@@ -11,7 +11,7 @@ import {Genre, Reducer} from '../../const.ts';
 
 const initialState: MainState = {
   favoriteFilmsCount: 0,
-  favoriteFilmsList: [],
+  favoriteFilmList: [],
   promo: null,
   filmList: [],
   sortedFilmList: [],
@@ -54,8 +54,8 @@ export const mainReducer = createSlice({
         state.promo = action.payload;
       })
       .addCase(fetchFavoriteFilmsAction.fulfilled, (state, action) => {
-        state.favoriteFilmsList = action.payload;
-        state.favoriteFilmsCount = state.favoriteFilmsList.length;
+        state.favoriteFilmList = action.payload;
+        state.favoriteFilmsCount = state.favoriteFilmList.length;
         state.dataIsLoading = false;
       })
       .addCase(setFavoriteCount, (state, action) => {

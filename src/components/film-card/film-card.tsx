@@ -25,7 +25,7 @@ export function FilmCard({film}: FilmCardProps): JSX.Element {
   }, [isPlaying, isNeedToPlay]);
 
   return (
-    <article className="small-film-card catalog__films-card">
+    <article className="small-film-card catalog__films-card" data-testid="film-card">
       <Link className="small-film-card__link small-film-card small-film-card__image"
         onMouseEnter={() => setIsNeedToPlay(true)}
         onMouseLeave={() => {
@@ -34,10 +34,11 @@ export function FilmCard({film}: FilmCardProps): JSX.Element {
         }}
         to={`${APIRoute.Films}/${film.id}`}
       >
-        {isPlaying ? <VideoPlayer isPlaying={isPlaying} isMuted src={film.previewVideoLink} poster={film.previewImage}/> :
+        {isPlaying ?
+          <VideoPlayer isPlaying={isPlaying} isMuted src={film.previewVideoLink} poster={film.previewImage}/> :
           <img src={film.previewImage} alt={film.name}/>}
-
       </Link>
+
       <h3 className="small-film-card__title">{!isPlaying && film.name}</h3>
     </article>
   );
