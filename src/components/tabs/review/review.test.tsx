@@ -4,9 +4,9 @@ import {Reviews} from './review.tsx';
 
 describe('Component: Reviews', () => {
   it('should render correctly', () => {
-    const reviews = makeFakeReviews();
+    const fakeReviews = makeFakeReviews();
 
-    render(<Reviews reviews={reviews} />);
+    render(<Reviews reviews={fakeReviews} />);
 
     expect(screen.getByTestId('reviews')).toBeInTheDocument();
   });
