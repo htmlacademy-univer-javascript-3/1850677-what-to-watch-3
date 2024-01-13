@@ -9,11 +9,18 @@ import {PlayerScreen} from '../../screens/player-screen/player-screen';
 import {PrivateRoute} from '../private-route/private-route';
 import {AddReviewScreen} from '../../screens/add-review-screen/add-review-screen';
 import {useAppSelector} from '../hooks/hooks.ts';
-import {getLoadingState} from '../../store/main-reducer/selectors.ts';
+import {getError, getLoadingState} from '../../store/main-reducer/selectors.ts';
 import {LoadingScreen} from '../../screens/loading-screen/loading-screen.tsx';
 
 export function App() {
   const isFilmsDataLoading = useAppSelector(getLoadingState);
+  const isError = useAppSelector(getError);
+
+  if (isError) {
+    return (
+      <ErrorScreen/>
+    );
+  }
 
   if (isFilmsDataLoading) {
     return (

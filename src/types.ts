@@ -54,7 +54,7 @@ export type MainState = {
   sortedFilmList: Film[];
   filmCardCount: number;
   dataIsLoading: boolean;
-  error: string | null;
+  hasError: boolean;
   promo: Film | null;
   favoriteFilmsCount: number;
   favoriteFilmList: Film[];

@@ -1,7 +1,7 @@
 import {Genre} from '../../const.ts';
 import {MainState} from '../../types.ts';
 import {mainReducer} from './main-reducer.ts';
-import {changeFavoriteStatusAction, fetchFilmsAction} from '../api-actions.ts';
+import {changeFavoriteStatusAction, fetchFilmsAction, fetchPromoFilmAction} from '../api-actions.ts';
 import {makeFakeFilmsList, makeFakeFilm} from '../../utils/mocks.ts';
 import {setFavoriteCount} from '../actions.ts';
 
@@ -17,7 +17,7 @@ describe('MainReducer Slice', () => {
       dataIsLoading: false,
       favoriteFilmList: [],
       favoriteFilmsCount: 0,
-      error: null,
+      hasError: false,
       promo: null,
     };
   });
@@ -43,6 +43,28 @@ describe('MainReducer Slice', () => {
 
     expect(result.filmList).toEqual(expectedFilmList);
     expect(result.dataIsLoading).toEqual(expectedDataIsLoading);
+  });
+
+  it('should set hasError with "fetchFilmsAction.rejected"', () => {
+    const testFilms = makeFakeFilmsList();
+
+    const result = mainReducer.reducer(initialState, {
+      type: fetchFilmsAction.rejected,
+      payload: testFilms,
+    });
+
+    expect(result.hasError).toEqual(true);
+  });
+
+  it('should set hasError with "fetchPromoFilmAction.rejected"', () => {
+    const testFilms = makeFakeFilmsList();
+
+    const result = mainReducer.reducer(initialState, {
+      type: fetchPromoFilmAction.rejected,
+      payload: testFilms,
+    });
+
+    expect(result.hasError).toEqual(true);
   });
 
   it('should change "favoriteFilmsCount" with "setFavoriteCount"', () => {

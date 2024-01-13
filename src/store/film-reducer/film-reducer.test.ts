@@ -8,7 +8,6 @@ import {
 } from '../api-actions.ts';
 import {makeFakeFilmsList, makeFakeFilm, makeFakeReviews} from '../../utils/mocks.ts';
 
-
 describe('FilmReducer Slice', () => {
   let initialState: FilmState;
 

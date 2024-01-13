@@ -5,4 +5,3 @@ export const changeGenre = createAction('changeGenre', (genre: Genre) => ({ payl
 export const getFilmsByGenre = createAction('getFilmsByGenre');
 export const setFilmCardCount = createAction('setFilmCardCount');
 export const setFavoriteCount = createAction<number>('setFavoriteCount');
-export const setError = createAction<string | null>('setError');
