@@ -41,15 +41,14 @@ export function MovieScreen() {
     }
   }, [id, dispatch, authorizationStatus]);
 
+  if (!currentFilm) {
+    return <ErrorScreen/>;
+  }
 
   if (isFilmsDataLoading) {
     return (
       <LoadingScreen/>
     );
-  }
-
-  if (!currentFilm) {
-    return <ErrorScreen/>;
   }
 
   const changeFavorite = () => {

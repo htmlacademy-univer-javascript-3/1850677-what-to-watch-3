@@ -9,4 +9,5 @@ export const getFilmCardCount = (state: State) => state[Reducer.Main].filmCardCo
 export const getLoadingState = (state: State) => state[Reducer.Main].dataIsLoading;
 export const getFavoriteFilmsCount = (state: State) => state[Reducer.Main].favoriteFilmsCount;
 export const getFavoriteFilmsList = (state: State) => state[Reducer.Main].favoriteFilmList;
+export const getError = (state: State) => state[Reducer.Main].hasError;
 

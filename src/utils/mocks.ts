@@ -11,7 +11,6 @@ export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({
 const getRandomNumber = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
-
 export const makeFakeFilm = (): Film =>
   ({
     id: datatype.uuid(),
@@ -60,7 +59,7 @@ export const makeFakeStore = (initialState?: Partial<State>): State => ({
     filmList: makeFakeFilmsList(),
     promo: makeFakeFilm(),
     genre: Genre.All,
-    error: null,
+    hasError: false,
     dataIsLoading: false,
     sortedFilmList: makeFakeFilmsList(),
     favoriteFilmsCount: getRandomNumber(1, 9),
